@@ -4,6 +4,7 @@ import './globals.css'
 import { SITE_NAME, SITE_DESCRIPTION } from '@/lib/seo'
 import Script from 'next/script'
 import Link from 'next/link'
+import { MobileMenu } from '@/components/MobileMenu'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 
@@ -68,7 +69,7 @@ function Header() {
     <header className="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/80">
       <div className="container mx-auto px-4 flex h-16 items-center justify-between">
         <Link href="/" className="flex items-center space-x-2">
-          <span className="text-2xl font-bold text-brand-red">Bebidas del Valle</span>
+          <span className="text-xl md:text-2xl font-bold text-brand-red">Bebidas del Valle</span>
         </Link>
         <nav className="hidden md:flex items-center space-x-6 text-sm font-medium">
           <Link href="/" className="transition-colors hover:text-brand-red">
@@ -84,23 +85,7 @@ function Header() {
             Empresa
           </Link>
         </nav>
-        <div className="md:hidden">
-          <button className="text-brand-red">
-            <svg
-              className="h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M4 6h16M4 12h16M4 18h16"
-              />
-            </svg>
-          </button>
-        </div>
+        <MobileMenu />
       </div>
     </header>
   )
