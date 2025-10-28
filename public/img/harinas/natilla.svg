@@ -1,17 +1,18 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="Harina para Natilla">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
   <defs>
     <linearGradient id="natillaGrad" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" style="stop-color:#F5E6D3;stop-opacity:1" />
       <stop offset="100%" style="stop-color:#D4C4A8;stop-opacity:1" />
     </linearGradient>
   </defs>
+  
   <rect width="800" height="600" fill="url(#natillaGrad)"/>
   
   <rect x="320" y="200" width="160" height="280" rx="8" fill="#B11E2F" opacity="0.15"/>
   <rect x="330" y="210" width="140" height="50" rx="4" fill="#C8A349" opacity="0.2"/>
   
   <ellipse cx="400" cy="320" rx="45" ry="15" fill="#B11E2F" opacity="0.15"/>
-  <path d="M 355 320 Q 355 360 400 370 Q 445 360 445 320" fill="#B11E2F" opacity="0.12" stroke="#B11E2F" stroke-width="2" opacity="0.15"/>
+  <path d="M 355 320 Q 355 360 400 370 Q 445 360 445 320" fill="#B11E2F" opacity="0.12" stroke="#B11E2F" stroke-width="2"/>
   
   <path d="M 375 290 Q 380 270 375 260" stroke="#B11E2F" stroke-width="2.5" fill="none" opacity="0.2" stroke-linecap="round"/>
   <path d="M 400 285 Q 405 265 400 255" stroke="#B11E2F" stroke-width="2.5" fill="none" opacity="0.2" stroke-linecap="round"/>
@@ -20,4 +21,3 @@
   <text x="400" y="420" font-family="system-ui, -apple-system, sans-serif" font-size="38" font-weight="700" fill="#1F2937" text-anchor="middle" opacity="0.9">Harina para Natilla</text>
   <text x="400" y="460" font-family="system-ui, -apple-system, sans-serif" font-size="26" font-weight="400" fill="#1F2937" text-anchor="middle" opacity="0.75">500 g</text>
 </svg>
-
