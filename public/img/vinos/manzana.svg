@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="Vino de Manzana">
+  <defs>
+    <linearGradient id="manzanaGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#C8A349;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#A68735;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#manzanaGrad)"/>
+  
+  <!-- Bottle silhouette -->
+  <path d="M 340 180 L 360 180 L 365 200 L 435 200 L 440 180 L 460 180 L 460 220 L 470 230 L 470 520 L 330 520 L 330 230 L 340 220 Z" 
+        fill="#FFFFFF" opacity="0.15"/>
+  
+  <!-- Apple icon -->
+  <circle cx="390" cy="320" r="35" fill="#FFFFFF" opacity="0.25"/>
+  <ellipse cx="390" cy="315" rx="30" ry="35" fill="#FFFFFF" opacity="0.15"/>
+  <path d="M 390 285 Q 395 265 405 260" stroke="#FFFFFF" stroke-width="4" fill="none" opacity="0.2"/>
+  <ellipse cx="375" cy="305" rx="8" ry="12" fill="#FFFFFF" opacity="0.15" transform="rotate(-25 375 305)"/>
+  
+  <text x="400" y="420" font-family="system-ui, -apple-system, sans-serif" font-size="42" font-weight="700" 
+        fill="#FFFFFF" text-anchor="middle" opacity="0.95">
+    Vino de Manzana
+  </text>
+  <text x="400" y="460" font-family="system-ui, -apple-system, sans-serif" font-size="28" font-weight="400" 
+        fill="#FFFFFF" text-anchor="middle" opacity="0.8">
+    750 ml
+  </text>
+</svg>
+

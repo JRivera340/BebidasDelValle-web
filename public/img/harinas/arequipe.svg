@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="Harina sabor Arequipe">
+  <defs>
+    <linearGradient id="arequipeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#C8A349;stop-opacity:0.3" />
+      <stop offset="100%" style="stop-color:#B28F3F;stop-opacity:0.4" />
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="#F5EFE0"/>
+  <rect width="800" height="600" fill="url(#arequipeGrad)"/>
+  
+  <!-- Package silhouette -->
+  <rect x="320" y="200" width="160" height="280" rx="8" fill="#C8A349" opacity="0.15"/>
+  <rect x="330" y="210" width="140" height="50" rx="4" fill="#C8A349" opacity="0.25"/>
+  
+  <!-- Dulce de leche drip -->
+  <ellipse cx="400" cy="290" rx="35" ry="10" fill="#C8A349" opacity="0.2"/>
+  <path d="M 365 290 Q 365 310 375 330 L 375 350 Q 375 360 385 360 L 415 360 Q 425 360 425 350 L 425 330 Q 435 310 435 290" 
+        fill="#C8A349" opacity="0.15"/>
+  <path d="M 385 360 Q 390 370 400 370 Q 410 370 415 360" fill="#C8A349" opacity="0.2"/>
+  
+  <text x="400" y="420" font-family="system-ui, -apple-system, sans-serif" font-size="36" font-weight="700" 
+        fill="#1F2937" text-anchor="middle" opacity="0.9">
+    Harina sabor Arequipe
+  </text>
+  <text x="400" y="460" font-family="system-ui, -apple-system, sans-serif" font-size="26" font-weight="400" 
+        fill="#1F2937" text-anchor="middle" opacity="0.75">
+    500 g
+  </text>
+</svg>
+

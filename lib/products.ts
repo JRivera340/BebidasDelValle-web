@@ -10,7 +10,7 @@ export const PRODUCTS: Product[] = [
     description:
       'Aromas frutales intensos y elegantes. Nuestra selección de temporada, ideal para obsequios corporativos y cestas personalizadas.',
     tags: ['selección', 'obsequio'],
-    images: ['/img/vinos/cereza.jpg'],
+    images: ['/img/vinos/cereza.svg'],
     available: true,
     badges: ['Edición especial'],
   },
@@ -23,7 +23,7 @@ export const PRODUCTS: Product[] = [
     description:
       'Equilibrado y fresco, con notas cítricas. Presentación premium para regalo, perfecto para ocasiones especiales.',
     tags: ['selección'],
-    images: ['/img/vinos/manzana.jpg'],
+    images: ['/img/vinos/manzana.svg'],
     available: true,
   },
   {
@@ -35,7 +35,7 @@ export const PRODUCTS: Product[] = [
     description:
       'Perfil aromático dulce y envolvente. Recomendado para cestas personalizadas y regalos corporativos.',
     tags: ['obsequio'],
-    images: ['/img/vinos/moscatel.jpg'],
+    images: ['/img/vinos/moscatel.svg'],
     available: true,
   },
   {
@@ -47,7 +47,7 @@ export const PRODUCTS: Product[] = [
     description:
       'Mezcla tradicional para postres cremosos. Presentación lista para regalo, ideal para complementar cestas.',
     tags: ['tradicional'],
-    images: ['/img/harinas/natilla.jpg'],
+    images: ['/img/harinas/natilla.svg'],
     available: true,
   },
   {
@@ -59,7 +59,7 @@ export const PRODUCTS: Product[] = [
     description:
       'Textura crujiente garantizada. Selección especial para obsequios y pedidos corporativos.',
     tags: ['selección'],
-    images: ['/img/harinas/bunuelo.jpg'],
+    images: ['/img/harinas/bunuelo.svg'],
     available: true,
   },
   {
@@ -71,7 +71,7 @@ export const PRODUCTS: Product[] = [
     description:
       'Sabor clásico y auténtico. Ideal para combinar en cestas personalizadas y regalos de empresa.',
     tags: ['clásico'],
-    images: ['/img/harinas/arequipe.jpg'],
+    images: ['/img/harinas/arequipe.svg'],
     available: true,
   },
 ]
@@ -83,7 +83,7 @@ export const COLLECTIONS: Collection[] = [
     color: 'red',
     description: 'Selección tradicional de nuestros vinos más apreciados',
     features: ['Vino de Cereza', 'Presentación premium', 'Disponible inmediato'],
-    image: '/img/collections/red.jpg',
+    image: '/img/collections/red.svg',
     products: ['vino-cereza'],
   },
   {
@@ -92,7 +92,7 @@ export const COLLECTIONS: Collection[] = [
     color: 'gold',
     description: 'Experiencia única para los paladares más exigentes',
     features: ['Vino Moscatel', 'Edición limitada', 'Entrega 24-48h'],
-    image: '/img/collections/gold.jpg',
+    image: '/img/collections/gold.svg',
     products: ['vino-moscatel', 'harina-arequipe'],
   },
   {
@@ -101,7 +101,7 @@ export const COLLECTIONS: Collection[] = [
     color: 'white',
     description: 'Sabores equilibrados y versátiles para toda ocasión',
     features: ['Vino de Manzana', 'Harinas tradicionales', 'Disponible todo el año'],
-    image: '/img/collections/white.jpg',
+    image: '/img/collections/white.svg',
     products: ['vino-manzana', 'harina-natilla', 'harina-bunuelo'],
   },
 ]

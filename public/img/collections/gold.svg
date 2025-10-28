@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-label="Colección Dorado Premium">
+  <defs>
+    <linearGradient id="goldCollGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#D4AF37;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#C8A349;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#B28F3F;stop-opacity:1" />
+    </linearGradient>
+    <radialGradient id="goldGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:0.15" />
+      <stop offset="100%" style="stop-color:#C8A349;stop-opacity:0" />
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#goldCollGrad)"/>
+  <circle cx="600" cy="400" r="300" fill="url(#goldGlow)"/>
+  
+  <!-- Premium bottle with package -->
+  <path d="M 520 260 L 540 260 L 544 280 L 596 280 L 600 260 L 620 260 L 620 295 L 630 305 L 630 560 L 510 560 L 510 305 L 520 295 Z" 
+        fill="#FFFFFF" opacity="0.18"/>
+  <rect x="650" y="380" width="90" height="140" rx="6" fill="#FFFFFF" opacity="0.12"/>
+  
+  <text x="600" y="650" font-family="system-ui, -apple-system, sans-serif" font-size="56" font-weight="800" 
+        fill="#FFFFFF" text-anchor="middle" opacity="0.95">
+    Colección Dorado Premium
+  </text>
+  <text x="600" y="700" font-family="system-ui, -apple-system, sans-serif" font-size="32" font-weight="400" 
+        fill="#FFFFFF" text-anchor="middle" opacity="0.85">
+    Experiencia de lujo
+  </text>
+</svg>
+

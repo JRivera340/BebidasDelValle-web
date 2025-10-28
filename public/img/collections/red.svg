@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-label="Colección Rojo Clásico">
+  <defs>
+    <linearGradient id="redCollGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#B11E2F;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#9A1A29;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8B1623;stop-opacity:1" />
+    </linearGradient>
+    <radialGradient id="redGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:0.1" />
+      <stop offset="100%" style="stop-color:#B11E2F;stop-opacity:0" />
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#redCollGrad)"/>
+  <circle cx="600" cy="400" r="300" fill="url(#redGlow)"/>
+  
+  <!-- Wine bottles -->
+  <path d="M 480 280 L 495 280 L 498 295 L 542 295 L 545 280 L 560 280 L 560 310 L 568 318 L 568 560 L 472 560 L 472 318 L 480 310 Z" 
+        fill="#FFFFFF" opacity="0.12"/>
+  <path d="M 640 280 L 655 280 L 658 295 L 702 295 L 705 280 L 720 280 L 720 310 L 728 318 L 728 560 L 632 560 L 632 318 L 640 310 Z" 
+        fill="#FFFFFF" opacity="0.15"/>
+  
+  <text x="600" y="650" font-family="system-ui, -apple-system, sans-serif" font-size="56" font-weight="800" 
+        fill="#FFFFFF" text-anchor="middle" opacity="0.95">
+    Colección Rojo Clásico
+  </text>
+  <text x="600" y="700" font-family="system-ui, -apple-system, sans-serif" font-size="32" font-weight="400" 
+        fill="#FFFFFF" text-anchor="middle" opacity="0.85">
+    Selección tradicional premium
+  </text>
+</svg>
+

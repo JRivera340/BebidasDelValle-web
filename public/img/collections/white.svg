@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-label="Colección Blanco Esencial">
+  <defs>
+    <linearGradient id="whiteCollGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#F9FAFB;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#F3F4F6;stop-opacity:1" />
+    </linearGradient>
+    <radialGradient id="whiteGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#C8A349;stop-opacity:0.08" />
+      <stop offset="100%" style="stop-color:#FFFFFF;stop-opacity:0" />
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#whiteCollGrad)"/>
+  <circle cx="600" cy="400" r="300" fill="url(#whiteGlow)"/>
+  
+  <!-- Mixed products silhouette -->
+  <path d="M 450 300 L 465 300 L 468 315 L 512 315 L 515 300 L 530 300 L 530 330 L 538 338 L 538 560 L 442 560 L 442 338 L 450 330 Z" 
+        fill="#B11E2F" opacity="0.1"/>
+  <rect x="570" y="400" width="85" height="130" rx="5" fill="#C8A349" opacity="0.1"/>
+  <rect x="680" y="420" width="80" height="110" rx="5" fill="#C8A349" opacity="0.08"/>
+  
+  <text x="600" y="650" font-family="system-ui, -apple-system, sans-serif" font-size="56" font-weight="800" 
+        fill="#1F2937" text-anchor="middle" opacity="0.9">
+    Colección Blanco Esencial
+  </text>
+  <text x="600" y="700" font-family="system-ui, -apple-system, sans-serif" font-size="32" font-weight="400" 
+        fill="#1F2937" text-anchor="middle" opacity="0.7">
+    Equilibrio y versatilidad
+  </text>
+</svg>
+
