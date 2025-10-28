@@ -10,7 +10,7 @@ export const PRODUCTS: Product[] = [
     description:
       'Aromas frutales intensos y elegantes. Nuestra selección de temporada, ideal para obsequios corporativos y cestas personalizadas.',
     tags: ['selección', 'obsequio'],
-    images: ['https://placehold.co/800x600/B11E2F/FFFFFF?text=Vino+de+Cereza+%0A750ml&font=montserrat'],
+    images: ['https://via.placeholder.com/800x600/B11E2F/FFFFFF?text=Vino+de+Cereza+750ml'],
     available: true,
     badges: ['Edición especial'],
   },
@@ -23,7 +23,7 @@ export const PRODUCTS: Product[] = [
     description:
       'Equilibrado y fresco, con notas cítricas. Presentación premium para regalo, perfecto para ocasiones especiales.',
     tags: ['selección'],
-    images: ['https://placehold.co/800x600/C8A349/FFFFFF?text=Vino+de+Manzana+%0A750ml&font=montserrat'],
+    images: ['https://via.placeholder.com/800x600/C8A349/FFFFFF?text=Vino+de+Manzana+750ml'],
     available: true,
   },
   {
@@ -35,7 +35,7 @@ export const PRODUCTS: Product[] = [
     description:
       'Perfil aromático dulce y envolvente. Recomendado para cestas personalizadas y regalos corporativos.',
     tags: ['obsequio'],
-    images: ['https://placehold.co/800x600/9A1A29/FFFFFF?text=Vino+Moscatel+%0A750ml&font=montserrat'],
+    images: ['https://via.placeholder.com/800x600/9A1A29/FFFFFF?text=Vino+Moscatel+750ml'],
     available: true,
   },
   {
@@ -47,7 +47,7 @@ export const PRODUCTS: Product[] = [
     description:
       'Mezcla tradicional para postres cremosos. Presentación lista para regalo, ideal para complementar cestas.',
     tags: ['tradicional'],
-    images: ['https://placehold.co/800x600/F5E6D3/1F2937?text=Harina+para+Natilla+%0A500g&font=montserrat'],
+    images: ['https://via.placeholder.com/800x600/F5E6D3/1F2937?text=Harina+Natilla+500g'],
     available: true,
   },
   {
@@ -59,7 +59,7 @@ export const PRODUCTS: Product[] = [
     description:
       'Textura crujiente garantizada. Selección especial para obsequios y pedidos corporativos.',
     tags: ['selección'],
-    images: ['https://placehold.co/800x600/E5C76A/1F2937?text=Harina+para+Bu%C3%B1uelo+%0A500g&font=montserrat'],
+    images: ['https://via.placeholder.com/800x600/E5C76A/1F2937?text=Harina+Bunuelo+500g'],
     available: true,
   },
   {
@@ -71,7 +71,7 @@ export const PRODUCTS: Product[] = [
     description:
       'Sabor clásico y auténtico. Ideal para combinar en cestas personalizadas y regalos de empresa.',
     tags: ['clásico'],
-    images: ['https://placehold.co/800x600/B28F3F/FFFFFF?text=Harina+sabor+Arequipe+%0A500g&font=montserrat'],
+    images: ['https://via.placeholder.com/800x600/B28F3F/FFFFFF?text=Harina+Arequipe+500g'],
     available: true,
   },
 ]
@@ -83,7 +83,7 @@ export const COLLECTIONS: Collection[] = [
     color: 'red',
     description: 'Selección tradicional de nuestros vinos más apreciados',
     features: ['Vino de Cereza', 'Presentación premium', 'Disponible inmediato'],
-    image: 'https://placehold.co/1200x800/B11E2F/FFFFFF?text=Colecci%C3%B3n+Rojo+Cl%C3%A1sico&font=montserrat',
+    image: 'https://via.placeholder.com/1200x800/B11E2F/FFFFFF?text=Coleccion+Rojo+Clasico',
     products: ['vino-cereza'],
   },
   {
@@ -92,7 +92,7 @@ export const COLLECTIONS: Collection[] = [
     color: 'gold',
     description: 'Experiencia única para los paladares más exigentes',
     features: ['Vino Moscatel', 'Edición limitada', 'Entrega 24-48h'],
-    image: 'https://placehold.co/1200x800/C8A349/FFFFFF?text=Colecci%C3%B3n+Dorado+Premium&font=montserrat',
+    image: 'https://via.placeholder.com/1200x800/C8A349/FFFFFF?text=Coleccion+Dorado+Premium',
     products: ['vino-moscatel', 'harina-arequipe'],
   },
   {
@@ -101,7 +101,7 @@ export const COLLECTIONS: Collection[] = [
     color: 'white',
     description: 'Sabores equilibrados y versátiles para toda ocasión',
     features: ['Vino de Manzana', 'Harinas tradicionales', 'Disponible todo el año'],
-    image: 'https://placehold.co/1200x800/F9FAFB/1F2937?text=Colecci%C3%B3n+Blanco+Esencial&font=montserrat',
+    image: 'https://via.placeholder.com/1200x800/F9FAFB/1F2937?text=Coleccion+Blanco+Esencial',
     products: ['vino-manzana', 'harina-natilla', 'harina-bunuelo'],
   },
 ]
