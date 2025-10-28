@@ -1,0 +1,14 @@
+<svg width="1200" height="800" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="redGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#B11E2F;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#9A1A29;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#redGrad)"/>
+  <circle cx="900" cy="400" r="250" fill="white" opacity="0.1"/>
+  <circle cx="300" cy="200" r="150" fill="white" opacity="0.05"/>
+  <text x="600" y="400" font-family="Arial, sans-serif" font-size="72" font-weight="bold" fill="white" text-anchor="middle">Colección</text>
+  <text x="600" y="480" font-family="Arial, sans-serif" font-size="64" font-weight="bold" fill="white" text-anchor="middle">Rojo Clásico</text>
+</svg>
+
