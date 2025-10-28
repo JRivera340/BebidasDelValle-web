@@ -10,7 +10,7 @@ export const PRODUCTS: Product[] = [
     description:
       'Aromas frutales intensos y elegantes. Nuestra selección de temporada, ideal para obsequios corporativos y cestas personalizadas.',
     tags: ['selección', 'obsequio'],
-    images: ['https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=800&h=600&fit=crop&q=80'],
+    images: ['/img/vinos/cereza.jpg'],
     available: true,
     badges: ['Edición especial'],
   },
@@ -23,7 +23,7 @@ export const PRODUCTS: Product[] = [
     description:
       'Equilibrado y fresco, con notas cítricas. Presentación premium para regalo, perfecto para ocasiones especiales.',
     tags: ['selección'],
-    images: ['https://images.unsplash.com/photo-1547595628-c61a29f496f0?w=800&h=600&fit=crop&q=80'],
+    images: ['/img/vinos/manzana.jpg'],
     available: true,
   },
   {
@@ -35,7 +35,7 @@ export const PRODUCTS: Product[] = [
     description:
       'Perfil aromático dulce y envolvente. Recomendado para cestas personalizadas y regalos corporativos.',
     tags: ['obsequio'],
-    images: ['https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=800&h=600&fit=crop&q=80'],
+    images: ['/img/vinos/moscatel.jpg'],
     available: true,
   },
   {
@@ -47,7 +47,7 @@ export const PRODUCTS: Product[] = [
     description:
       'Mezcla tradicional para postres cremosos. Presentación lista para regalo, ideal para complementar cestas.',
     tags: ['tradicional'],
-    images: ['https://images.unsplash.com/photo-1549888834-3ec93abae044?w=800&h=600&fit=crop&q=80'],
+    images: ['/img/harinas/natilla.jpg'],
     available: true,
   },
   {
@@ -59,7 +59,7 @@ export const PRODUCTS: Product[] = [
     description:
       'Textura crujiente garantizada. Selección especial para obsequios y pedidos corporativos.',
     tags: ['selección'],
-    images: ['https://images.unsplash.com/photo-1623428187969-5da2dcea5ebf?w=800&h=600&fit=crop&q=80'],
+    images: ['/img/harinas/bunuelo.jpg'],
     available: true,
   },
   {
@@ -71,7 +71,7 @@ export const PRODUCTS: Product[] = [
     description:
       'Sabor clásico y auténtico. Ideal para combinar en cestas personalizadas y regalos de empresa.',
     tags: ['clásico'],
-    images: ['https://images.unsplash.com/photo-1517686748-7ae0be4a4a8a?w=800&h=600&fit=crop&q=80'],
+    images: ['/img/harinas/arequipe.jpg'],
     available: true,
   },
 ]
@@ -83,7 +83,7 @@ export const COLLECTIONS: Collection[] = [
     color: 'red',
     description: 'Selección tradicional de nuestros vinos más apreciados',
     features: ['Vino de Cereza', 'Presentación premium', 'Disponible inmediato'],
-    image: 'https://images.unsplash.com/photo-1553361371-9b22f78e8b1d?w=1200&h=800&fit=crop&q=80',
+    image: '/img/collections/red.jpg',
     products: ['vino-cereza'],
   },
   {
@@ -92,7 +92,7 @@ export const COLLECTIONS: Collection[] = [
     color: 'gold',
     description: 'Experiencia única para los paladares más exigentes',
     features: ['Vino Moscatel', 'Edición limitada', 'Entrega 24-48h'],
-    image: 'https://images.unsplash.com/photo-1474722883778-ab3ea2dd0f9d?w=1200&h=800&fit=crop&q=80',
+    image: '/img/collections/gold.jpg',
     products: ['vino-moscatel', 'harina-arequipe'],
   },
   {
@@ -101,7 +101,7 @@ export const COLLECTIONS: Collection[] = [
     color: 'white',
     description: 'Sabores equilibrados y versátiles para toda ocasión',
     features: ['Vino de Manzana', 'Harinas tradicionales', 'Disponible todo el año'],
-    image: 'https://images.unsplash.com/photo-1615719413546-198b25453f85?w=1200&h=800&fit=crop&q=80',
+    image: '/img/collections/white.jpg',
     products: ['vino-manzana', 'harina-natilla', 'harina-bunuelo'],
   },
 ]
