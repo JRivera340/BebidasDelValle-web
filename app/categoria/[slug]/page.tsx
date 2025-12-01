@@ -14,12 +14,13 @@ interface CategoryPageProps {
 }
 
 export async function generateStaticParams() {
-  return [{ slug: 'vinos' }, { slug: 'harinas' }]
+  return [{ slug: 'vinos' }, { slug: 'licores' }, { slug: 'harinas' }]
 }
 
 export async function generateMetadata({ params }: CategoryPageProps): Promise<Metadata> {
   const categoryNames = {
     vinos: 'Vinos',
+    licores: 'Licores',
     harinas: 'Harinas',
   }
 
@@ -33,7 +34,7 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
 }
 
 export default function CategoryPage({ params }: CategoryPageProps) {
-  const validCategories: Category[] = ['vinos', 'harinas']
+  const validCategories: Category[] = ['vinos', 'licores', 'harinas']
   if (!validCategories.includes(params.slug as Category)) {
     notFound()
   }
@@ -43,11 +44,13 @@ export default function CategoryPage({ params }: CategoryPageProps) {
 
   const categoryNames = {
     vinos: 'Vinos',
+    licores: 'Licores',
     harinas: 'Harinas',
   }
 
   const categoryDescriptions = {
     vinos: 'Selección artesanal de vinos de cereza, manzana y moscatel. Presentaciones premium ideales para obsequios.',
+    licores: 'Licores artesanales de la más alta calidad. Selección especial para ocasiones especiales y regalos corporativos.',
     harinas: 'Harinas tradicionales de la mejor calidad para natilla, buñuelos y arequipe. Perfectas para cestas personalizadas.',
   }
 

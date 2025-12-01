@@ -72,3 +72,35 @@
   }
 }
 
+/* Swiper Logo Carousel Styles */
+.logo-carousel-swiper {
+  padding-bottom: 40px;
+}
+
+.logo-carousel-swiper .swiper-slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: auto;
+}
+
+.logo-carousel-swiper .swiper-pagination {
+  position: relative;
+  margin-top: 24px;
+}
+
+.logo-carousel-swiper .swiper-pagination-bullet {
+  width: 10px;
+  height: 10px;
+  background-color: #9ca3af;
+  opacity: 0.6;
+  transition: all 0.3s ease;
+  margin: 0 4px;
+}
+
+.logo-carousel-swiper .swiper-pagination-bullet-active {
+  background-color: #B11E2F;
+  opacity: 1;
+  width: 24px;
+  border-radius: 5px;
+}

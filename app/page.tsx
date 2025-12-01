@@ -3,6 +3,7 @@ import { MessageCircle, Package, Sparkles } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { ProductCard } from '@/components/ProductCard'
 import { AccordionShowroom } from '@/components/AccordionShowroom'
+import { LogoCarousel } from '@/components/LogoCarousel'
 import { waBasketMessage } from '@/lib/whatsapp'
 import { PRODUCTS, COLLECTIONS } from '@/lib/products'
 
@@ -124,6 +125,9 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* Logo Carousel */}
+      <LogoCarousel />
 
       {/* CTA Section */}
       <section className="py-12 md:py-20 bg-gradient-to-r from-brand-gold to-brand-gold-hover text-white">

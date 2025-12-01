@@ -9,6 +9,7 @@ import { Badge } from '@/components/ui/badge'
 import { PRODUCTS, getProductBySlug } from '@/lib/products'
 import { waProductMessage } from '@/lib/whatsapp'
 import { generateProductJsonLd, generateBreadcrumbJsonLd } from '@/lib/seo'
+import { Category } from '@/lib/types'
 
 interface ProductPageProps {
   params: {
@@ -44,8 +45,9 @@ export default function ProductPage({ params }: ProductPageProps) {
     notFound()
   }
 
-  const categoryNames = {
+  const categoryNames: Record<Category, string> = {
     vinos: 'Vinos',
+    licores: 'Licores',
     harinas: 'Harinas',
   }
 
@@ -76,7 +78,7 @@ export default function ProductPage({ params }: ProductPageProps) {
 
       <div className="container mx-auto px-4 py-12">
         {/* Breadcrumb */}
-        <nav className="flex items-center gap-2 text-sm text-gray-600 mb-8">
+        <nav className="flex items-center gap-2 text-sm text-gray-600 mb-6">
           <Link href="/" className="hover:text-brand-red">
             Inicio
           </Link>

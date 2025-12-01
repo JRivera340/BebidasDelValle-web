@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { Menu, X, Home, Package, Layers, Briefcase } from 'lucide-react'
+import { Menu, Home, Package, Layers, Briefcase } from 'lucide-react'
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
 import { Button } from '@/components/ui/button'
 
@@ -60,4 +60,3 @@ export function MobileMenu() {
     </Sheet>
   )
 }
-

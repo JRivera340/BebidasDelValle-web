@@ -74,6 +74,19 @@ export const PRODUCTS: Product[] = [
     images: ['/img/harinas/arequipe.svg'],
     available: true,
   },
+  {
+    id: 'aperitivo-rumberito',
+    slug: 'aperitivo-rumberito',
+    name: 'Aperitivo Rumberito',
+    category: 'licores',
+    variants: [{ name: '750 ml', sku: 'RUM-750' }],
+    description:
+      'Aperitivo único con un sabor característico y envolvente. Perfecto para ocasiones especiales y regalos corporativos de alta calidad.',
+    tags: ['especial', 'premium'],
+    images: ['/img/licores/rumberito.svg'],
+    available: true,
+    badges: ['Edición especial'],
+  },
 ]
 
 export const COLLECTIONS: Collection[] = [

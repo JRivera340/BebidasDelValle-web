@@ -1,4 +1,4 @@
-export type Category = 'vinos' | 'harinas'
+export type Category = 'vinos' | 'licores' | 'harinas'
 
 export interface Variant {
   name: string
