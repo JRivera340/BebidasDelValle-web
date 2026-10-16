@@ -2,9 +2,9 @@
 
 import { useState, useMemo } from 'react'
 import { Metadata } from 'next'
-import { ProductCard } from '@/components/ProductCard'
-import { Filters } from '@/components/Filters'
-import { PRODUCTS } from '@/lib/products'
+import { ProductCard } from '@/components/product/ProductCard'
+import { Filters } from '@/components/product/Filters'
+import { PRODUCTS } from '@/lib/data/products'
 import { Category } from '@/lib/types'
 
 export default function CatalogoPage() {

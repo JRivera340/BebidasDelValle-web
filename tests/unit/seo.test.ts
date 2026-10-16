@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import { generateProductJsonLd, generateBreadcrumbJsonLd } from '@/lib/seo'
-import { PRODUCTS } from '@/lib/products'
+import { PRODUCTS } from '@/lib/data/products'
 
 describe('seo', () => {
   it('JSON-LD de producto sin precio no incluye price', () => {

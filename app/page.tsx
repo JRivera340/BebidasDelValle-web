@@ -1,11 +1,11 @@
 import Link from 'next/link'
 import { MessageCircle, Package, Sparkles } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import { ProductCard } from '@/components/ProductCard'
-import { AccordionShowroom } from '@/components/AccordionShowroom'
-import { LogoCarousel } from '@/components/LogoCarousel'
+import { ProductCard } from '@/components/product/ProductCard'
+import { AccordionShowroom } from '@/components/sections/AccordionShowroom'
+import { LogoCarousel } from '@/components/sections/LogoCarousel'
 import { waBasketMessage } from '@/lib/whatsapp'
-import { PRODUCTS, COLLECTIONS } from '@/lib/products'
+import { PRODUCTS, COLLECTIONS } from '@/lib/data/products'
 
 export default function HomePage() {
   const featuredProducts = PRODUCTS.slice(0, 3)

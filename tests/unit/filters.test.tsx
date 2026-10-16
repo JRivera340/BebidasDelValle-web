@@ -1,7 +1,7 @@
 import { describe, it, expect, vi } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { Filters } from '@/components/Filters'
+import { Filters } from '@/components/product/Filters'
 
 describe('Filters', () => {
   it('llama al callback al elegir categoría', async () => {

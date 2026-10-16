@@ -1,26 +1,26 @@
-// Google Analytics 4 Event Tracking
+// Seguimiento de eventos de Google Analytics 4
 
-export const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || 'GA_MEASUREMENT_ID'
+export const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || ''
 
-// Types
-interface EventParams {
-  [key: string]: string | number | boolean
-}
+type EventParams = Record<string, string | number | boolean>
 
-// Helper to send GA4 events
-export function trackEvent(eventName: string, params?: EventParams) {
-  if (typeof window !== 'undefined' && (window as any).gtag) {
-    (window as any).gtag('event', eventName, params)
+declare global {
+  interface Window {
+    gtag?: (command: 'event', name: string, params?: EventParams) => void
   }
 }
 
-// Specific event trackers
+export function trackEvent(eventName: string, params?: EventParams) {
+  if (typeof window !== 'undefined' && window.gtag) {
+    window.gtag('event', eventName, params)
+  }
+}
 
 export function trackWhatsAppClick(productSlug: string, productName: string, source: string) {
   trackEvent('generate_lead', {
     product_slug: productSlug,
     product_name: productName,
-    source: source,
+    source,
     method: 'whatsapp',
   })
 }
@@ -29,21 +29,22 @@ export function trackProductView(productSlug: string, productName: string, categ
   trackEvent('view_item', {
     product_slug: productSlug,
     product_name: productName,
-    category: category,
+    category,
   })
 }
 
-export function trackBasketStart() {
+export function trackBasketStart(source: string) {
   trackEvent('begin_checkout', {
     checkout_type: 'custom_basket',
+    source,
   })
 }
 
 export function trackVolumeQuote(quantity: string, city: string) {
   trackEvent('generate_lead', {
     lead_type: 'volume_quote',
-    quantity: quantity,
-    city: city,
+    quantity,
+    city,
   })
 }
 
@@ -53,4 +54,3 @@ export function trackCollectionInterest(collectionName: string) {
     content_id: collectionName,
   })
 }
-
