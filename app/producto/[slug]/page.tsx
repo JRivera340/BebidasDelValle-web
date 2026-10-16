@@ -1,219 +1,117 @@
-import { Metadata } from 'next'
+import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import Link from 'next/link'
-import { ChevronRight, MessageCircle, Package, Clock } from 'lucide-react'
+import { MessageCircle } from 'lucide-react'
+import { Section } from '@/components/layout/Section'
+import { Container } from '@/components/layout/Container'
+import { Breadcrumb } from '@/components/product/Breadcrumb'
 import { ProductGallery } from '@/components/product/ProductGallery'
-import { ProductCard } from '@/components/product/ProductCard'
+import { ProductGrid } from '@/components/product/ProductGrid'
+import { SellosAdvertencia } from '@/components/product/SellosAdvertencia'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
-import { PRODUCTS, getProductBySlug } from '@/lib/data/products'
+import { CATEGORIAS, LINEAS, PRODUCTOS, getProductoPorSlug, nombreCompleto } from '@/lib/data/products'
 import { waProductMessage } from '@/lib/whatsapp'
 import { generateProductJsonLd, generateBreadcrumbJsonLd } from '@/lib/seo'
-import { Category } from '@/lib/types'
 
-interface ProductPageProps {
-  params: {
-    slug: string
-  }
+interface ProductoPageProps {
+  params: { slug: string }
 }
 
-export async function generateStaticParams() {
-  return PRODUCTS.map((product) => ({
-    slug: product.slug,
-  }))
+export function generateStaticParams() {
+  return PRODUCTOS.map((p) => ({ slug: p.slug }))
 }
 
-export async function generateMetadata({ params }: ProductPageProps): Promise<Metadata> {
-  const product = getProductBySlug(params.slug)
-  if (!product) return {}
-
+export function generateMetadata({ params }: ProductoPageProps): Metadata {
+  const producto = getProductoPorSlug(params.slug)
+  if (!producto) return {}
+  const titulo = nombreCompleto(producto)
   return {
-    title: product.name,
-    description: product.description,
+    title: titulo,
+    description: producto.descripcion,
+    alternates: { canonical: `/producto/${producto.slug}` },
     openGraph: {
-      title: product.name,
-      description: product.description,
-      images: product.images,
+      title: titulo,
+      description: producto.descripcion,
+      images: producto.imagenes.map((i) => ({ url: i.src, alt: i.alt })),
     },
   }
 }
 
-export default function ProductPage({ params }: ProductPageProps) {
-  const product = getProductBySlug(params.slug)
+export default function ProductoPage({ params }: ProductoPageProps) {
+  const producto = getProductoPorSlug(params.slug)
+  if (!producto) notFound()
 
-  if (!product) {
-    notFound()
-  }
+  const categoria = CATEGORIAS[producto.categoria]
+  const titulo = nombreCompleto(producto)
+  const relacionados = PRODUCTOS.filter((p) => p.slug !== producto.slug).slice(0, 3)
+  const waLink = waProductMessage({ name: titulo, slug: producto.slug }, `ficha-${producto.slug}`)
 
-  const categoryNames: Record<Category, string> = {
-    vinos: 'Vinos',
-    licores: 'Licores',
-    harinas: 'Harinas',
-  }
-
-  const relatedProducts = PRODUCTS.filter(
-    (p) => p.category === product.category && p.id !== product.id
-  ).slice(0, 3)
-
-  const productJsonLd = generateProductJsonLd(product)
+  const productoJsonLd = generateProductJsonLd(producto)
   const breadcrumbJsonLd = generateBreadcrumbJsonLd([
     { name: 'Inicio', url: '/' },
     { name: 'Catálogo', url: '/catalogo' },
-    { name: categoryNames[product.category], url: `/categoria/${product.category}` },
-    { name: product.name, url: `/producto/${product.slug}` },
+    { name: categoria.nombre, url: `/categoria/${producto.categoria}` },
+    { name: titulo, url: `/producto/${producto.slug}` },
   ])
-
-  const waLink = waProductMessage({ name: product.name, slug: product.slug }, 'ficha-' + product.slug)
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
-      />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productoJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
 
-      <div className="container mx-auto px-4 py-12">
-        {/* Breadcrumb */}
-        <nav className="flex items-center gap-2 text-sm text-gray-600 mb-6">
-          <Link href="/" className="hover:text-brand-red">
-            Inicio
-          </Link>
-          <ChevronRight className="h-4 w-4" />
-          <Link href="/catalogo" className="hover:text-brand-red">
-            Catálogo
-          </Link>
-          <ChevronRight className="h-4 w-4" />
-          <Link href={`/categoria/${product.category}`} className="hover:text-brand-red">
-            {categoryNames[product.category]}
-          </Link>
-          <ChevronRight className="h-4 w-4" />
-          <span className="text-brand-red font-medium">{product.name}</span>
-        </nav>
+      <div data-acento={producto.acento} className="halo-producto">
+        <Container className="py-[clamp(2rem,5vw,4rem)]">
+          <Breadcrumb
+            items={[
+              { nombre: 'Inicio', href: '/' },
+              { nombre: 'Catálogo', href: '/catalogo' },
+              { nombre: categoria.nombre, href: `/categoria/${producto.categoria}` },
+              { nombre: titulo },
+            ]}
+          />
 
-        {/* Product Details */}
-        <div className="grid lg:grid-cols-2 gap-12 mb-16">
-          {/* Gallery */}
-          <div>
-            <ProductGallery images={product.images} productName={product.name} />
-          </div>
+          <div className="flex flex-col items-center gap-10">
+            <ProductGallery imagenes={producto.imagenes} />
 
-          {/* Info */}
-          <div className="space-y-6">
-            <div>
-              <div className="flex items-start justify-between gap-4 mb-3">
-                <h1 className="text-4xl font-bold">{product.name}</h1>
-                {!product.available && (
-                  <Badge variant="destructive">No disponible</Badge>
-                )}
+            <div className="flex w-full max-w-prose flex-col items-center gap-6 text-center">
+              <div className="space-y-3">
+                <Badge variant="outline" className="uppercase tracking-wide">
+                  {LINEAS[producto.linea]}
+                </Badge>
+                <h1 className="font-display text-seccion text-balance">{producto.nombre}</h1>
+                <p className="text-lg text-suave">{producto.descripcion}</p>
               </div>
-              {product.badges && product.badges.length > 0 && (
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {product.badges.map((badge, idx) => (
-                    <Badge key={idx} variant="gold">
-                      {badge}
-                    </Badge>
-                  ))}
+
+              {producto.presentaciones.length > 0 && (
+                <div className="w-full rounded-lg border border-border bg-superficie p-4">
+                  <h2 className="mb-2 font-semibold">Presentaciones</h2>
+                  <ul className="space-y-1 text-suave">
+                    {producto.presentaciones.map((p) => (
+                      <li key={p.tamano}>{p.tamano}</li>
+                    ))}
+                  </ul>
                 </div>
               )}
-              <p className="text-lg text-gray-600">{product.description}</p>
-            </div>
 
-            {/* Variants */}
-            {product.variants && product.variants.length > 0 && (
-              <div className="border rounded-lg p-4 space-y-3">
-                <h3 className="font-semibold">Presentaciones disponibles</h3>
-                <div className="space-y-2">
-                  {product.variants.map((variant, idx) => (
-                    <div key={idx} className="flex items-center justify-between">
-                      <span className="text-gray-700">{variant.name}</span>
-                      <span className="text-sm text-gray-500">SKU: {variant.sku}</span>
-                    </div>
-                  ))}
-                </div>
+              <div className="w-full space-y-3">
+                <h2 className="font-semibold">Información de advertencia</h2>
+                <SellosAdvertencia sellos={producto.sellos} />
               </div>
-            )}
 
-            {/* Tags */}
-            <div>
-              <h3 className="font-semibold mb-3">Características</h3>
-              <div className="flex flex-wrap gap-2">
-                {product.tags.map((tag, idx) => (
-                  <span
-                    key={idx}
-                    className="px-3 py-1 rounded-full bg-gray-100 text-gray-700 text-sm capitalize"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            {/* Features */}
-            <div className="bg-gray-50 rounded-lg p-6 space-y-4">
-              <div className="flex items-center gap-3 text-gray-700">
-                <Package className="h-5 w-5 text-brand-red" />
-                <span>Empaque premium listo para regalo</span>
-              </div>
-              <div className="flex items-center gap-3 text-gray-700">
-                <Clock className="h-5 w-5 text-brand-red" />
-                <span>Entrega disponible 24-48h</span>
-              </div>
-            </div>
-
-            {/* CTA Button */}
-            <Button
-              asChild
-              variant="primary"
-              size="lg"
-              className="w-full group"
-              disabled={!product.available}
-            >
-              <a
-                href={waLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2"
-              >
-                <MessageCircle className="h-5 w-5 transition-transform group-hover:translate-x-1" />
-                Consultar por WhatsApp
-              </a>
-            </Button>
-          </div>
-        </div>
-
-        {/* Related Products */}
-        {relatedProducts.length > 0 && (
-          <div>
-            <h2 className="text-3xl font-bold mb-8">Productos relacionados</h2>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {relatedProducts.map((relatedProduct, idx) => (
-                <ProductCard key={relatedProduct.id} product={relatedProduct} index={idx} />
-              ))}
+              <Button asChild variant="primary" size="lg" className="w-full sm:w-auto" aria-disabled={!producto.disponible}>
+                <a href={waLink} target="_blank" rel="noopener noreferrer">
+                  <MessageCircle aria-hidden="true" />
+                  Consultar por WhatsApp
+                </a>
+              </Button>
             </div>
           </div>
-        )}
+        </Container>
       </div>
 
-      {/* Floating WhatsApp Button (Mobile) */}
-      {product.available && (
-        <div className="fixed bottom-6 right-6 lg:hidden z-50">
-          <Button
-            asChild
-            variant="primary"
-            size="icon"
-            className="h-14 w-14 rounded-full shadow-2xl animate-pulse hover:animate-none"
-          >
-            <a href={waLink} target="_blank" rel="noopener noreferrer">
-              <MessageCircle className="h-6 w-6" />
-            </a>
-          </Button>
-        </div>
-      )}
+      <Section id="relacionados" titulo="Otros productos" superficie>
+        <ProductGrid productos={relacionados} />
+      </Section>
     </>
   )
 }
-

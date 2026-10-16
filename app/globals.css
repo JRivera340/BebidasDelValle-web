@@ -4,103 +4,112 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    /* Base de marca (canales RGB para admitir opacidad) */
+    --fondo: 20 8 10;
+    --superficie: 30 13 16;
+    --texto: 245 237 227;
+    --suave: 205 191 176;
+    --oro: 200 163 73;
+    --oro-hover: 178 143 63;
+    --rojo: 177 30 47;
+    --rojo-hover: 154 26 41;
+
+    /* Color de producto activo (se redefine con data-acento) */
+    --producto: 81 1 122;
+    --producto-fondo: 37 1 62;
+
+    /* Variables de los componentes base */
+    --background: 351 43% 5%;
+    --foreground: 34 43% 93%;
+    --card: 353 39% 8%;
+    --card-foreground: 34 43% 93%;
+    --popover: 353 39% 8%;
+    --popover-foreground: 34 43% 93%;
+    --primary: 43 52% 53%;
+    --primary-foreground: 351 43% 5%;
+    --secondary: 353 25% 14%;
+    --secondary-foreground: 34 43% 93%;
+    --muted: 353 25% 14%;
+    --muted-foreground: 32 22% 75%;
+    --accent: 353 25% 16%;
+    --accent-foreground: 34 43% 93%;
+    --destructive: 0 62% 45%;
+    --destructive-foreground: 34 43% 93%;
+    --border: 353 20% 22%;
+    --input: 353 20% 22%;
+    --ring: 43 52% 53%;
     --radius: 1rem;
+
+    /* Movimiento */
+    --ease-entrada: cubic-bezier(0.22, 1, 0.36, 1);
+    --ease-salida: cubic-bezier(0.64, 0, 0.78, 0);
   }
 
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-  }
-}
+  /* Colores de producto: dominante y fondo muestreados de cada imagen */
+  [data-acento='uva'] { --producto: 81 1 122; --producto-fondo: 37 1 62; }
+  [data-acento='cereza'] { --producto: 173 4 43; --producto-fondo: 104 1 20; }
+  [data-acento='manzana'] { --producto: 160 2 13; --producto-fondo: 107 1 3; }
+  [data-acento='bosque'] { --producto: 45 65 38; --producto-fondo: 2 23 11; }
+  [data-acento='melocoton'] { --producto: 233 108 27; --producto-fondo: 202 70 1; }
+  [data-acento='rosa'] { --producto: 72 22 27; --producto-fondo: 190 130 130; }
+  [data-acento='brasa'] { --producto: 128 59 28; --producto-fondo: 27 21 12; }
+  [data-acento='mantel'] { --producto: 226 208 187; --producto-fondo: 157 127 104; }
 
-@layer base {
   * {
     @apply border-border;
   }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
-    @apply bg-background text-foreground;
-    font-feature-settings: "rlig" 1, "calt" 1;
+    @apply bg-fondo text-texto;
+    font-feature-settings: 'rlig' 1, 'calt' 1;
+    overflow-x: clip;
+  }
+
+  :focus-visible {
+    outline: 2px solid rgb(var(--oro));
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 }
 
 @layer utilities {
   .shimmer-gold {
-    background: linear-gradient(
+    background-image: linear-gradient(
       90deg,
-      #C8A349 0%,
-      #E5C76A 50%,
-      #C8A349 100%
+      rgb(var(--oro)) 0%,
+      rgb(var(--texto) / 0.55) 50%,
+      rgb(var(--oro)) 100%
     );
     background-size: 200% 100%;
     animation: shimmer 2s linear infinite;
   }
-}
 
-/* Swiper Logo Carousel Styles */
-.logo-carousel-swiper {
-  padding-bottom: 40px;
-}
+  .halo-producto {
+    background-image: radial-gradient(
+      60% 55% at 50% 45%,
+      rgb(var(--producto-fondo) / 0.55),
+      transparent 70%
+    );
+  }
 
-.logo-carousel-swiper .swiper-slide {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: auto;
-}
-
-.logo-carousel-swiper .swiper-pagination {
-  position: relative;
-  margin-top: 24px;
-}
-
-.logo-carousel-swiper .swiper-pagination-bullet {
-  width: 10px;
-  height: 10px;
-  background-color: #9ca3af;
-  opacity: 0.6;
-  transition: all 0.3s ease;
-  margin: 0 4px;
-}
-
-.logo-carousel-swiper .swiper-pagination-bullet-active {
-  background-color: #B11E2F;
-  opacity: 1;
-  width: 24px;
-  border-radius: 5px;
+  .sello-octogono {
+    clip-path: polygon(30% 0, 70% 0, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0 70%, 0 30%);
+  }
 }

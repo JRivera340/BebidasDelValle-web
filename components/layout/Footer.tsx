@@ -1,61 +1,44 @@
 import Link from 'next/link'
+import { Container } from '@/components/layout/Container'
 import { SITE_NAME } from '@/lib/seo'
+import { CATEGORIAS } from '@/lib/data/products'
+import { waGeneralLink, PHONE } from '@/lib/whatsapp'
+
+function telefonoLegible(numero: string) {
+  const m = /^57(\d{3})(\d{3})(\d{4})$/.exec(numero)
+  return m ? `+57 ${m[1]} ${m[2]} ${m[3]}` : `+${numero}`
+}
 
 export function Footer() {
   return (
-    <footer className="border-t bg-gray-50">
-      <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          <div className="space-y-3">
-            <h3 className="text-lg font-bold text-brand-red">Bebidas del Valle</h3>
-            <p className="text-sm text-gray-600">
-              Selección premium de vinos artesanales y harinas tradicionales.
-            </p>
-          </div>
-          <div>
-            <h4 className="font-semibold mb-3">Navegación</h4>
-            <ul className="space-y-2 text-sm text-gray-600">
-              <li>
-                <Link href="/catalogo" className="hover:text-brand-red transition-colors">
-                  Catálogo
-                </Link>
-              </li>
-              <li>
-                <Link href="/colecciones" className="hover:text-brand-red transition-colors">
-                  Colecciones
-                </Link>
-              </li>
-              <li>
-                <Link href="/empresa" className="hover:text-brand-red transition-colors">
-                  Pedidos corporativos
-                </Link>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h4 className="font-semibold mb-3">Categorías</h4>
-            <ul className="space-y-2 text-sm text-gray-600">
-              <li>
-                <Link href="/categoria/vinos" className="hover:text-brand-red transition-colors">
-                  Vinos
-                </Link>
-              </li>
-              <li>
-                <Link href="/categoria/harinas" className="hover:text-brand-red transition-colors">
-                  Harinas
-                </Link>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h4 className="font-semibold mb-3">Contacto</h4>
-            <p className="text-sm text-gray-600">WhatsApp: +57 311 344 0504</p>
-          </div>
-        </div>
-        <div className="mt-8 pt-8 border-t text-center text-sm text-gray-600">
+    <footer className="border-t border-border bg-superficie">
+      <Container className="py-12 text-center">
+        <p className="font-display text-2xl text-brand-gold">{SITE_NAME}</p>
+        <nav aria-label="Pie de página" className="mt-6 flex flex-wrap justify-center gap-x-6 gap-y-3 text-sm text-suave">
+          <Link href="/catalogo" className="py-2 hover:text-texto">Catálogo</Link>
+          <Link href="/colecciones" className="py-2 hover:text-texto">Colecciones</Link>
+          <Link href="/empresa" className="py-2 hover:text-texto">Pedidos corporativos</Link>
+          {Object.entries(CATEGORIAS).map(([slug, c]) => (
+            <Link key={slug} href={`/categoria/${slug}`} className="py-2 hover:text-texto">
+              {c.nombre}
+            </Link>
+          ))}
+        </nav>
+        <p className="mt-6 text-sm text-suave">
+          WhatsApp:{' '}
+          <a
+            href={waGeneralLink('pie')}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block py-2 text-texto underline underline-offset-4"
+          >
+            {telefonoLegible(PHONE)}
+          </a>
+        </p>
+        <p className="mt-8 border-t border-border pt-6 text-sm text-suave">
           © {new Date().getFullYear()} {SITE_NAME}. Todos los derechos reservados.
-        </div>
-      </div>
+        </p>
+      </Container>
     </footer>
   )
 }

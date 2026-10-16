@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { Container } from '@/components/layout/Container'
 import { MobileMenu } from '@/components/layout/MobileMenu'
 
 const links = [
@@ -10,20 +11,22 @@ const links = [
 
 export function Header() {
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/80">
-      <div className="container mx-auto px-4 flex h-16 items-center justify-between">
-        <Link href="/" className="flex items-center space-x-2">
-          <span className="text-xl md:text-2xl font-bold text-brand-red">Bebidas del Valle</span>
+    <header className="sticky top-0 z-50 w-full border-b border-border bg-fondo/90 backdrop-blur">
+      <Container className="relative flex h-16 items-center justify-center gap-10">
+        <Link href="/" className="font-display text-xl text-brand-gold md:text-2xl" data-testid="logo">
+          Bebidas del Valle
         </Link>
-        <nav className="hidden md:flex items-center space-x-6 text-sm font-medium" aria-label="Principal">
+        <nav className="hidden items-center gap-6 text-sm font-medium md:flex" aria-label="Principal">
           {links.map((link) => (
-            <Link key={link.href} href={link.href} className="transition-colors hover:text-brand-red">
+            <Link key={link.href} href={link.href} className="text-suave transition-colors hover:text-texto">
               {link.label}
             </Link>
           ))}
         </nav>
-        <MobileMenu />
-      </div>
+        <div className="absolute right-4 md:hidden">
+          <MobileMenu />
+        </div>
+      </Container>
     </header>
   )
 }

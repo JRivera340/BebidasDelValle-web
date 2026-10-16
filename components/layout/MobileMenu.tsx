@@ -21,15 +21,15 @@ export function MobileMenu() {
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild>
         <Button variant="ghost" size="icon" className="md:hidden">
-          <Menu className="h-6 w-6 text-brand-red" />
+          <Menu className="h-6 w-6 text-brand-gold" />
           <span className="sr-only">Abrir menú</span>
         </Button>
       </SheetTrigger>
       <SheetContent side="right" className="w-[300px] sm:w-[400px]">
         <SheetHeader>
-          <SheetTitle className="text-brand-red text-xl">Bebidas del Valle</SheetTitle>
+          <SheetTitle className="font-display text-xl text-brand-gold">Bebidas del Valle</SheetTitle>
         </SheetHeader>
-        <nav className="flex flex-col gap-4 mt-8">
+        <nav className="mt-8 flex flex-col gap-2" aria-label="Menú móvil">
           {menuItems.map((item) => {
             const Icon = item.icon
             return (
@@ -37,25 +37,21 @@ export function MobileMenu() {
                 key={item.href}
                 href={item.href}
                 onClick={() => setOpen(false)}
-                className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-100 transition-colors group"
+                className="group flex min-h-11 items-center gap-3 rounded-lg px-4 py-3 transition-colors hover:bg-accent"
               >
-                <Icon className="h-5 w-5 text-brand-red group-hover:scale-110 transition-transform" />
-                <span className="text-lg font-medium group-hover:text-brand-red transition-colors">
-                  {item.label}
-                </span>
+                <Icon className="h-5 w-5 text-brand-gold" aria-hidden="true" />
+                <span className="text-lg font-medium">{item.label}</span>
               </Link>
             )
           })}
         </nav>
-        <div className="absolute bottom-8 left-6 right-6">
-          <div className="bg-gray-50 rounded-lg p-4 text-center space-y-2">
-            <p className="text-sm text-gray-600">¿Necesitas ayuda?</p>
-            <Button asChild variant="primary" size="sm" className="w-full">
-              <a href={waGeneralLink('menu-movil')} target="_blank" rel="noopener noreferrer">
-                WhatsApp
-              </a>
-            </Button>
-          </div>
+        <div className="absolute bottom-8 left-6 right-6 space-y-2 rounded-lg bg-accent p-4 text-center">
+          <p className="text-sm text-suave">¿Necesitas ayuda?</p>
+          <Button asChild variant="primary" size="sm" className="w-full">
+            <a href={waGeneralLink('menu-movil')} target="_blank" rel="noopener noreferrer">
+              WhatsApp
+            </a>
+          </Button>
         </div>
       </SheetContent>
     </Sheet>
