@@ -4,14 +4,14 @@ Migración desde Vercel. Los pasos asumen un proyecto Next.js 14 con npm. Los no
 
 ## Antes de migrar
 
-1. Crear `.env.example` con las tres variables de `ARQUITECTURA.md`.
-2. Fijar la versión de Node en `package.json`:
+1. `.env.example` con las tres variables de `ARQUITECTURA.md` (hecho).
+2. Versión de Node fijada en `package.json` (hecho):
    ```json
    "engines": { "node": ">=20" }
    ```
 3. Confirmar que `npm run build` corre limpio en local con las variables definidas (el `postbuild` genera sitemap y robots).
 4. Limpiar la documentación de Vercel que ya no aplica (ver `BACKLOG.md`).
-5. Restringir `images.remotePatterns` en `next.config.js` a hosts reales.
+5. `images.remotePatterns` ya no existe: solo se sirven imágenes locales (hecho).
 
 ## Pasos
 

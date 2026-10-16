@@ -3,7 +3,6 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import { MessageCircle } from 'lucide-react'
 import { Container } from '@/components/layout/Container'
 import { Button } from '@/components/ui/button'
@@ -18,23 +17,24 @@ const INTERVALO_MS = 4500
 const LINEAS_TITULAR = ['Cestas personalizadas', 'que dejan huella']
 
 export function Hero({ imagenes }: HeroProps) {
-  const sinMovimiento = useReducedMotion()
   const [indice, setIndice] = useState(0)
+  // Solo se montan las imágenes ya mostradas: la primera no compite con las demás por ancho de banda
+  const [montadas, setMontadas] = useState(1)
 
   useEffect(() => {
-    if (sinMovimiento || imagenes.length < 2) return
+    if (imagenes.length < 2 || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
     const id = window.setInterval(() => {
-      if (!document.hidden) setIndice((i) => (i + 1) % imagenes.length)
+      if (document.hidden) return
+      setIndice((i) => (i + 1) % imagenes.length)
+      setMontadas((m) => Math.min(imagenes.length, m + 1))
     }, INTERVALO_MS)
     return () => window.clearInterval(id)
-  }, [sinMovimiento, imagenes.length])
-
-  const actual = imagenes[indice]
+  }, [imagenes.length])
 
   return (
     <section
       data-testid="hero"
-      data-acento={actual.acento}
+      data-acento={imagenes[indice].acento}
       aria-labelledby="hero-titulo"
       className="halo-producto relative flex min-h-[calc(100svh-4rem)] items-center overflow-hidden py-10 transition-colors duration-700"
     >
@@ -45,14 +45,9 @@ export function Hero({ imagenes }: HeroProps) {
             <span aria-hidden="true" className="block">
               {LINEAS_TITULAR.map((linea, i) => (
                 <span key={linea} className="block overflow-hidden pb-1">
-                  <motion.span
-                    className="block"
-                    initial={sinMovimiento ? false : { y: '110%' }}
-                    animate={{ y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.1 + i * 0.12, ease: [0.22, 1, 0.36, 1] }}
-                  >
+                  <span className="block animate-revelar" style={{ animationDelay: `${0.1 + i * 0.12}s` }}>
                     {linea}
-                  </motion.span>
+                  </span>
                 </span>
               ))}
             </span>
@@ -64,25 +59,20 @@ export function Hero({ imagenes }: HeroProps) {
         </div>
 
         <div className="relative h-[min(38svh,26rem)] w-[min(60vw,19.5rem)]" data-testid="botella-principal">
-          <AnimatePresence mode="popLayout" initial={false}>
-            <motion.div
-              key={actual.src}
-              className="absolute inset-0"
-              initial={sinMovimiento ? false : { opacity: 0, y: 24, scale: 0.97 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={sinMovimiento ? undefined : { opacity: 0, y: -16 }}
-              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <Image
-                src={actual.src}
-                alt={actual.alt}
-                fill
-                priority={indice === 0}
-                className="object-contain"
-                sizes="(max-width: 640px) 60vw, 312px"
-              />
-            </motion.div>
-          </AnimatePresence>
+          {imagenes.slice(0, montadas).map((imagen, i) => (
+            <Image
+              key={imagen.src}
+              src={imagen.src}
+              alt={imagen.alt}
+              fill
+              priority={i === 0}
+              aria-hidden={i !== indice}
+              className={`object-contain transition-[opacity,transform] duration-700 ease-out ${
+                i === indice ? 'translate-y-0 opacity-100' : 'translate-y-3 opacity-0'
+              }`}
+              sizes="(max-width: 640px) 60vw, 312px"
+            />
+          ))}
         </div>
 
         <div className="flex flex-wrap justify-center gap-3" data-testid="cta-hero">

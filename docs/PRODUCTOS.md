@@ -1,6 +1,6 @@
 # Catálogo de productos
 
-Fuente de verdad en código: `lib/products.ts`. Este documento explica qué hay, qué imagen corresponde a cada producto y qué datos están confirmados. Decisión del propietario: **las cuatro líneas de abajo reemplazan el catálogo anterior** (Cereza, Manzana, Moscatel, Natilla, Buñuelo, Arequipe, Rumberito).
+Fuente de verdad en código: `lib/data/products.ts`. Este documento explica qué hay, qué imagen corresponde a cada producto y qué datos están confirmados. Decisión del propietario: **las cuatro líneas de abajo reemplazan el catálogo anterior** (Cereza, Manzana, Moscatel, Natilla, Buñuelo, Arequipe, Rumberito).
 
 ## Líneas y productos
 
@@ -25,24 +25,28 @@ Las 8 imágenes son 5 productos distintos más variaciones de fondo de la misma 
 
 `public/img/productos/<linea>-<producto>[-<variante>].<ext>` en minúsculas y sin tildes. Ejemplos: `vinifrut-uva.jpg`, `navifiest-manzana-rojo.jpg`, `navifiest-manzana-verde.jpg`, `navifiest-manzana-rosa.jpg`, `navifiest-320-melocoton.jpg`, `la-molienda-natilla.jpg`, `torti-valle-torta.jpg`. Formato final: AVIF/WebP generados por `next/image`; originales en JPG de alta calidad.
 
-## Modelo de datos sugerido (`lib/types.ts`)
+## Modelo de datos (`lib/types.ts`)
+
+El catálogo está en `lib/data/products.ts` y las colecciones en `lib/data/collections.ts`.
 
 ```ts
-type Producto = {
-  slug: string;              // 'vinifrut-uva'
-  linea: 'vinifrut' | 'navifiest' | 'la-molienda' | 'torti-valle';
-  nombre: string;            // 'Uva'
-  categoria: 'bebidas' | 'harinas' | 'panaderia';
-  presentaciones: { sku: string; tamano: string }[];
-  sellos: ('azucares' | 'sodio' | 'grasas-saturadas' | 'edulcorantes')[];
-  imagenes: { src: string; alt: string; fondo?: string }[];
-  acento: string;            // token de color, ver MARCA-Y-DISENO.md
-  descripcion: string;
-  datosConfirmados: { precio: boolean; ingredientes: boolean; registroSanitario: boolean };
-};
+interface Producto {
+  slug: string              // 'vinifrut-uva'
+  linea: 'vinifrut' | 'navifiest' | 'la-molienda' | 'torti-valle'
+  nombre: string            // 'Uva'
+  categoria: 'bebidas' | 'harinas' | 'panaderia'
+  presentaciones: { tamano: string; sku?: string }[]
+  sellos: ('azucares' | 'sodio' | 'grasas-saturadas' | 'edulcorantes')[]
+  imagenes: { src: string; alt: string; acento?: Acento }[]
+  acento: Acento            // token de color, ver MARCA-Y-DISENO.md
+  descripcion: string
+  disponible: boolean
+  precio?: number
+  datosConfirmados: { precio: boolean; ingredientes: boolean; registroSanitario: boolean }
+}
 ```
 
-`datosConfirmados` impide que la UI muestre un dato sin respaldo del cliente.
+`datosConfirmados` impide que la interfaz muestre un dato sin respaldo del cliente. Los SKU se omiten hasta que el cliente los entregue. El formato de 320 ml de Navifiest se modela como presentación del producto Manzana (decisión D8 pendiente).
 
 ## Estado de datos
 

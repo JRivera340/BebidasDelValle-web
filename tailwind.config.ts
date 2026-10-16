@@ -78,6 +78,10 @@ const config = {
         sm: 'calc(var(--radius) - 4px)',
       },
       keyframes: {
+        revelar: {
+          from: { transform: 'translateY(110%)' },
+          to: { transform: 'translateY(0)' },
+        },
         shimmer: {
           '0%': { backgroundPosition: '-200% 0' },
           '100%': { backgroundPosition: '200% 0' },
@@ -85,6 +89,7 @@ const config = {
       },
       animation: {
         shimmer: 'shimmer 2s linear infinite',
+        revelar: 'revelar 0.8s cubic-bezier(0.22, 1, 0.36, 1) both',
       },
       boxShadow: {
         card: '0 8px 24px rgb(0 0 0 / 0.35)',

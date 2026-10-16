@@ -9,6 +9,7 @@ import type { Coleccion } from '@/lib/types'
 import { getProductoPorSlug, nombreCompleto } from '@/lib/data/products'
 import { Button } from '@/components/ui/button'
 import { waBasketMessage } from '@/lib/whatsapp'
+import { trackCollectionInterest } from '@/lib/analytics'
 
 interface AccordionShowroomProps {
   colecciones: Coleccion[]
@@ -25,6 +26,11 @@ export function AccordionShowroom({ colecciones }: AccordionShowroomProps) {
   const [activo, setActivo] = useState(0)
   const sinMovimiento = useReducedMotion()
   const duracion = sinMovimiento ? 0 : 0.6
+
+  const elegir = (i: number) => {
+    setActivo(i)
+    trackCollectionInterest(colecciones[i].id)
+  }
 
   const siguiente = () => setActivo((i) => (i + 1) % colecciones.length)
   const anterior = () => setActivo((i) => (i - 1 + colecciones.length) % colecciones.length)
@@ -75,7 +81,7 @@ export function AccordionShowroom({ colecciones }: AccordionShowroomProps) {
               <button
                 key={c.id}
                 type="button"
-                onClick={() => setActivo(i)}
+                onClick={() => elegir(i)}
                 aria-label={`Ir a ${c.nombre}`}
                 aria-current={i === activo}
                 className="flex h-11 w-8 items-center justify-center"
@@ -107,7 +113,7 @@ export function AccordionShowroom({ colecciones }: AccordionShowroomProps) {
               transition={{ duration: duracion, ease: [0.22, 1, 0.36, 1] }}
               onMouseEnter={() => setActivo(index)}
               onFocus={() => setActivo(index)}
-              onClick={() => setActivo(index)}
+              onClick={() => elegir(index)}
               onKeyDown={(e) => {
                 if (e.key === 'ArrowRight') setActivo((index + 1) % colecciones.length)
                 if (e.key === 'ArrowLeft') setActivo((index - 1 + colecciones.length) % colecciones.length)

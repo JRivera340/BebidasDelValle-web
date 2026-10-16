@@ -1,62 +1,48 @@
 # Backlog
 
-Estado al 15 de octubre de 2026, a partir de la revisión del repo (14 commits entre el 28-oct-2025 y el 1-dic-2025). Prioridad: P0 bloquea publicar, P1 necesario para el rediseño, P2 mejora.
+Estado al 16 de octubre de 2026. Prioridad: P0 bloquea publicar, P1 necesario para el rediseño, P2 mejora.
 
 ## Decisiones abiertas (requieren respuesta del cliente)
 
-| # | Decisión | Impacto |
-|---|---|---|
-| D1 | Nombre correcto de la categoría de las bebidas (hoy "vino" en archivos, "bebida sabor ... sin alcohol" en etiquetas) | Textos, SEO, cumplimiento |
-| D2 | Buñuelo, Arequipe y Rumberito: ¿siguen en el catálogo? ¿hay fotos? | Catálogo |
-| D3 | Teléfono comercial: WhatsApp del código vs. número de la etiqueta | Todos los CTA |
-| D4 | Descuentos por volumen, tiempos de entrega y "gestor de cuenta" | Página Empresa |
-| D5 | Autorización de uso de marcas y logos de distribuidores | Carrusel de distribuidores |
-| D6 | Registro sanitario, razón social, ingredientes por producto | Fichas |
-| D7 | Cómo se registra la comisión por lead (código de origen, mensaje, seguimiento) | Modelo de ingresos |
-| D8 | Variante Navifiest 320 ml: sabor y si es producto aparte | Catálogo |
+Se aplicó la opción por defecto y quedó marcada con `TODO(D#)` en el código.
 
-## Fase 0: base (P0)
+| # | Decisión | Opción aplicada | Dónde |
+|---|---|---|---|
+| D1 | Nombre correcto de la categoría de las bebidas | Se dice "bebida sabor a ..."; no se usa "vino" | `lib/data/products.ts`, prueba en `tests/unit/products.test.ts` |
+| D2 | Buñuelo, Arequipe y Rumberito | Fuera del catálogo publicado, con redirección a `/catalogo` | `lib/data/products.ts`, `next.config.js` |
+| D3 | Teléfono comercial | `573113440504` en `NEXT_PUBLIC_WHATSAPP_NUMBER` | `.env.example`, `lib/whatsapp.ts` |
+| D4 | Descuentos por volumen, tiempos de entrega, gestor de cuenta | Retirados del sitio; pedido mínimo de 10 unidades | `app/empresa/page.tsx`, `lib/validacion.ts` |
+| D5 | Autorización de marcas y logos de distribuidores | Sección y dependencia `swiper` eliminadas | `docs/AUDITORIA.md` |
+| D6 | Registro sanitario, razón social, ingredientes | No se publican; `datosConfirmados` en falso | `lib/data/products.ts` |
+| D7 | Registro de la comisión por lead | `ref` de origen en cada mensaje y evento `generate_lead` en GA4 | `lib/whatsapp.ts`, `components/layout/WhatsAppTracker.tsx` |
+| D8 | Variante Navifiest 320 ml | Presentación del producto Manzana, con su imagen en la galería | `lib/data/products.ts` |
 
-- Migrar a Railway según `DESPLIEGUE-RAILWAY.md`.
-- Dominio real en `SITE_URL` y sitemap; `.env.example`.
-- Conectar GA4: el layout usa un ID fijo y `analytics.ts` lee la variable; unificar.
-- Quitar restos de "ALMA" y consolidar los 11 `.md` de la raíz en `README.md` + `docs/`.
-- Cargar catálogo nuevo en `lib/products.ts` con las imágenes del proyecto.
+## Resuelto
 
-## Fase 1: diseño y movimiento (P1)
+- Reorganización de carpetas, README propio y eliminación de los 11 `.md` heredados.
+- GA4 por variable de entorno y eventos conectados; `SITE_URL` unificada.
+- Catálogo nuevo (5 productos, 3 categorías, 3 colecciones) con sellos y `datosConfirmados`.
+- Metadata y canonical por ruta; JSON-LD sin `Offer` sin precio confirmado.
+- Filtro de categorías generado desde los datos y una sola función de búsqueda.
+- Botón deshabilitado con `aria-disabled`; salto de `isMobile` eliminado con CSS responsive.
+- Sistema de diseño oscuro, `Container` y `Section`, tipografía editorial, botón flotante de WhatsApp.
+- Hero con rotación de producto, titular por líneas, transición con elemento compartido.
+- Pruebas unitarias, e2e, de layout y de accesibilidad; CI en GitHub Actions.
+- `remotePatterns` eliminado, `zod` en uso, `engines` de Node, `sharp` para imágenes.
 
-- Tokens de color por producto y fondo oscuro cálido.
-- Hero con botella y cambio de color por producto.
-- Tipografía editorial para titulares.
-- Transición de página con elemento compartido.
-- Scroll suave y revelados por línea.
-- Fichas con sellos de advertencia y CTA con `ref` de origen.
+## Abierto
 
-## Fase 2: producto y contenido (P1)
-
-- Colecciones nuevas (ver `PRODUCTOS.md`).
-- Página Empresa con composición de caja por cantidad.
-- Metadata propia en `catalogo` y `empresa`.
-- Filtro de categorías generado desde los datos, no botones fijos.
-- Corregir el salto de `isMobile` en el showroom (CSS responsive o `matchMedia` con valor inicial).
-
-## Fase 3: calidad (P2)
-
-- `Button asChild disabled` con `<a>` no bloquea el clic: manejar con `aria-disabled` y `pointer-events`.
-- `searchProducts` duplica la lógica de filtrado del catálogo: unificar.
-- Padding del contenedor de Tailwind (2 rem) más `px-4` en páginas: elegir uno.
-- `.gitignore` ignora robots y sitemap, que se generan en build: dejar documentado.
-- `zod`: usar o eliminar.
-- Lighthouse móvil real, línea base y presupuesto.
-- Pruebas de humo (Playwright) sobre la ruta de conversión.
-
-## Fase 4: escala (P2)
-
-- Partículas y showroom con profundidad.
-- Botella 3D bajo demanda en escritorio.
-- Evaluar CMS (Sanity, Payload u otro) si el catálogo crece o el cliente quiere editar sin el repo.
-- Panel simple de leads por origen para sustentar la comisión.
-
-## Documentación heredada a eliminar
-
-`PROJECT_SUMMARY`, `FEATURES`, `ROUTES`, `DEPLOY_*`, `INSTRUCCIONES_DEPLOY_SIMPLE`, `DIAGNOSTICO_RAPIDO`, `fix-loading`, `CAMBIAR_IMAGENES`, `CAMBIOS_REALIZADOS`. Contradicen el código (6 productos y 15 páginas vs. 7 productos, Unsplash vs. SVG locales, pnpm vs. npm). Su contenido útil ya está en `docs/`.
+| Prioridad | Pendiente |
+|---|---|
+| P0 | Fotografía real del producto y datos de etiqueta (D6): las imágenes actuales son arte de campaña |
+| P0 | Definir dominio final y cargar variables en el entorno de despliegue |
+| P1 | Rendimiento móvil: Lighthouse 87-88 y LCP 3.7 s en simulación 4G lenta (objetivo 90 y 2.5 s). Probar menos ancho de imagen, calidad 60-65 y recorte del JS compartido |
+| P1 | Migrar a Next 15 o superior: las advisories restantes de `npm audit` están en `next@14` |
+| P1 | Migrar a Railway según `DESPLIEGUE-RAILWAY.md` |
+| P2 | Cursor con halo del color del producto (solo puntero fino) |
+| P2 | Showroom horizontal con parallax de profundidad y partículas de luz |
+| P2 | Botella 3D bajo demanda en escritorio |
+| P2 | Capturas de referencia visuales (`VISUAL=1 npm run test:e2e`) generadas en CI para evitar diferencias de sistema operativo |
+| P2 | WebKit móvil en las pruebas e2e |
+| P2 | Evaluar CMS si el catálogo crece o el cliente quiere editar sin el repo |
+| P2 | Panel simple de leads por origen para sustentar la comisión |

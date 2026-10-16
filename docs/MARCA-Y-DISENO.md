@@ -71,3 +71,13 @@ Presupuesto de rendimiento: JS inicial de la home menor a 200 kB gzip, animacion
 ## Tokens
 
 Los tokens viven en `app/globals.css` como variables CSS y se exponen en `tailwind.config.ts` (`colors.uva`, `colors.cereza`, etc.). Ningún componente usa hex directos. Al agregar un producto: ver "Cómo agregar un producto" en `docs/WORKFLOW.md`.
+
+## Estado de implementación
+
+- Tokens: `--fondo`, `--superficie`, `--texto`, `--suave`, `--oro`, `--rojo` y los ocho colores de producto (`[data-acento='uva']`, etc.) en `app/globals.css`. Cada uno guarda dos canales RGB: `--producto` (dominante) y `--producto-fondo`. En Tailwind: `bg-producto`, `bg-producto-fondo`, `text-brand-gold`, `bg-brand-red`.
+- Los fondos de producto se usan con opacidad máxima de 0.55 sobre el fondo oscuro; el color `mantel` (`#9D7F68`) no alcanza contraste AA con texto claro como fondo sólido.
+- Tipografía: Fraunces para titulares (`font-display`) e Inter para cuerpo. Escalas fluidas `text-titular` y `text-seccion`.
+- Hecho de la Fase 1 de movimiento: hero con botella que rota entre productos y cambia el color del halo, titular revelado por líneas (CSS), scroll suave nativo y transición de página con elemento compartido (View Transitions API, imagen de tarjeta a imagen de ficha). Sin GSAP ni Lenis: mantienen la home por debajo del presupuesto sin esas librerías.
+- Pendiente de la Fase 1: cursor con halo (solo puntero fino).
+- Movimiento: todas las animaciones respetan `prefers-reduced-motion` (regla global en `globals.css`, `matchMedia` en el hero y transición de página desactivada).
+- Curvas: entrada `cubic-bezier(0.22, 1, 0.36, 1)` (`--ease-entrada`), salida `cubic-bezier(0.64, 0, 0.78, 0)` (`--ease-salida`).

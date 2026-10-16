@@ -7,6 +7,7 @@ import { Breadcrumb } from '@/components/product/Breadcrumb'
 import { ProductGallery } from '@/components/product/ProductGallery'
 import { ProductGrid } from '@/components/product/ProductGrid'
 import { SellosAdvertencia } from '@/components/product/SellosAdvertencia'
+import { VistaProducto } from '@/components/product/VistaProducto'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { CATEGORIAS, LINEAS, PRODUCTOS, getProductoPorSlug, nombreCompleto } from '@/lib/data/products'
@@ -59,6 +60,7 @@ export default function ProductoPage({ params }: ProductoPageProps) {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productoJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
 
+      <VistaProducto slug={producto.slug} nombre={titulo} categoria={producto.categoria} />
       <div data-acento={producto.acento} className="halo-producto">
         <Container className="py-[clamp(2rem,5vw,4rem)]">
           <Breadcrumb
