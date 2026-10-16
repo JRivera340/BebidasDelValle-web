@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { Menu, Home, Package, Layers, Briefcase } from 'lucide-react'
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
 import { Button } from '@/components/ui/button'
+import { waGeneralLink } from '@/lib/whatsapp'
 
 const menuItems = [
   { href: '/', label: 'Inicio', icon: Home },
@@ -50,7 +51,7 @@ export function MobileMenu() {
           <div className="bg-gray-50 rounded-lg p-4 text-center space-y-2">
             <p className="text-sm text-gray-600">¿Necesitas ayuda?</p>
             <Button asChild variant="primary" size="sm" className="w-full">
-              <a href="https://wa.me/573113440504" target="_blank" rel="noopener noreferrer">
+              <a href={waGeneralLink('menu-movil')} target="_blank" rel="noopener noreferrer">
                 WhatsApp
               </a>
             </Button>

@@ -16,7 +16,7 @@ interface ProductCardProps {
 }
 
 export function ProductCard({ product, index = 0 }: ProductCardProps) {
-  const waLink = waProductMessage({ name: product.name, slug: product.slug })
+  const waLink = waProductMessage({ name: product.name, slug: product.slug }, 'tarjeta-' + product.slug)
 
   return (
     <motion.div

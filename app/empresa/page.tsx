@@ -15,7 +15,7 @@ export default function EmpresaPage() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     if (quantity && city) {
-      window.open(waVolumeMessage(quantity, city), '_blank')
+      window.open(waVolumeMessage(quantity, city, 'empresa-formulario'), '_blank', 'noopener,noreferrer')
     }
   }
 

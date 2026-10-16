@@ -71,7 +71,7 @@ export default function ColeccionesPage() {
                         className="group mt-4"
                       >
                         <a
-                          href={waBasketMessage()}
+                          href={waBasketMessage('colecciones-seccion')}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="flex items-center gap-2"
@@ -109,7 +109,7 @@ export default function ColeccionesPage() {
             className="bg-white text-brand-red hover:bg-gray-100 group"
           >
             <a
-              href={waBasketMessage()}
+              href={waBasketMessage('colecciones-cierre')}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2"

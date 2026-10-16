@@ -6,6 +6,7 @@ import { GA_MEASUREMENT_ID } from '@/lib/analytics'
 import Script from 'next/script'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
+import { WhatsAppTracker } from '@/components/layout/WhatsAppTracker'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 
@@ -61,6 +62,7 @@ export default function RootLayout({
         <Header />
         <main className="min-h-screen">{children}</main>
         <Footer />
+        <WhatsAppTracker />
       </body>
     </html>
   )

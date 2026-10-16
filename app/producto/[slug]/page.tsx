@@ -63,7 +63,7 @@ export default function ProductPage({ params }: ProductPageProps) {
     { name: product.name, url: `/producto/${product.slug}` },
   ])
 
-  const waLink = waProductMessage({ name: product.name, slug: product.slug })
+  const waLink = waProductMessage({ name: product.name, slug: product.slug }, 'ficha-' + product.slug)
 
   return (
     <>

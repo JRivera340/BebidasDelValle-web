@@ -93,7 +93,7 @@ export function AccordionShowroom({ collections }: AccordionShowroomProps) {
                     className="w-full"
                   >
                     <a
-                      href={waBasketMessage()}
+                      href={waBasketMessage('showroom-movil')}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex items-center justify-center gap-2"
@@ -273,7 +273,7 @@ export function AccordionShowroom({ collections }: AccordionShowroomProps) {
                           className="group/btn shadow-xl hover:shadow-2xl"
                         >
                           <a
-                            href={waBasketMessage()}
+                            href={waBasketMessage('showroom')}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="flex items-center gap-2"

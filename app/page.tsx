@@ -30,7 +30,7 @@ export default function HomePage() {
                 className="bg-white text-brand-red hover:bg-gray-100 group w-full sm:w-auto"
               >
                 <a
-                  href={waBasketMessage()}
+                  href={waBasketMessage('hero')}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center justify-center gap-2"
@@ -143,7 +143,7 @@ export default function HomePage() {
             className="bg-white text-brand-gold hover:bg-gray-100 group w-full sm:w-auto max-w-xs mx-auto"
           >
             <a
-              href={waBasketMessage()}
+              href={waBasketMessage('home-cierre')}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center justify-center gap-2"

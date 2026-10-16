@@ -27,6 +27,12 @@ describe('whatsapp', () => {
     expect(r.text).toContain('utm_campaign=whatsapp_volumen')
   })
 
+  it('incluye el ref de origen en todos los generadores', () => {
+    expect(parse(waProductMessage({ name: 'Uva', slug: 'vinifrut-uva' }, 'ficha-uva')).text).toContain('ref=ficha-uva')
+    expect(parse(waBasketMessage('hero')).text).toContain('ref=hero')
+    expect(parse(waVolumeMessage('10', 'Cali', 'empresa-formulario')).text).toContain('ref=empresa-formulario')
+  })
+
   it('codifica caracteres especiales', () => {
     const url = waVolumeMessage('10', 'Cúcuta & Cía')
     expect(url).not.toContain(' ')
