@@ -49,7 +49,7 @@ export default function CategoriaPage({ params }: CategoriaPageProps) {
           ]}
         />
         {productos.length > 0 ? (
-          <ProductGrid productos={productos} />
+          <ProductGrid productos={productos} conTransicion />
         ) : (
           <p className="py-12 text-center text-lg text-suave">
             No hay productos disponibles en esta categoría por ahora.

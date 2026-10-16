@@ -71,7 +71,7 @@ export default function ProductoPage({ params }: ProductoPageProps) {
           />
 
           <div className="flex flex-col items-center gap-10">
-            <ProductGallery imagenes={producto.imagenes} />
+            <ProductGallery slug={producto.slug} imagenes={producto.imagenes} />
 
             <div className="flex w-full max-w-prose flex-col items-center gap-6 text-center">
               <div className="space-y-3">
@@ -110,7 +110,7 @@ export default function ProductoPage({ params }: ProductoPageProps) {
       </div>
 
       <Section id="relacionados" titulo="Otros productos" superficie>
-        <ProductGrid productos={relacionados} />
+        <ProductGrid productos={relacionados} conTransicion />
       </Section>
     </>
   )

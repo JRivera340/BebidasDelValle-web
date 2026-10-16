@@ -10,10 +10,11 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { SellosAdvertencia } from '@/components/product/SellosAdvertencia'
 
 interface ProductCardProps {
+  conTransicion?: boolean
   producto: Producto
 }
 
-export function ProductCard({ producto }: ProductCardProps) {
+export function ProductCard({ producto, conTransicion = false }: ProductCardProps) {
   const waLink = waProductMessage(
     { name: nombreCompleto(producto), slug: producto.slug },
     `tarjeta-${producto.slug}`
@@ -28,6 +29,7 @@ export function ProductCard({ producto }: ProductCardProps) {
     >
       <Link
         href={`/producto/${producto.slug}`}
+        style={conTransicion ? { viewTransitionName: `producto-${producto.slug}` } : undefined}
         className="halo-producto relative block aspect-[3/4] overflow-hidden bg-producto-fondo/30"
         aria-label={`Ver ${nombreCompleto(producto)}`}
       >

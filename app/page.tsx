@@ -6,7 +6,7 @@ import { Hero } from '@/components/sections/Hero'
 import { AccordionShowroom } from '@/components/sections/AccordionShowroom'
 import { ProductGrid } from '@/components/product/ProductGrid'
 import { waBasketMessage } from '@/lib/whatsapp'
-import { PRODUCTOS, getProductoPorSlug } from '@/lib/data/products'
+import { PRODUCTOS } from '@/lib/data/products'
 import { COLECCIONES } from '@/lib/data/collections'
 
 const beneficios = [
@@ -28,11 +28,9 @@ const beneficios = [
 ]
 
 export default function HomePage() {
-  const protagonista = getProductoPorSlug('navifiest-manzana') ?? PRODUCTOS[0]
-
   return (
     <>
-      <Hero imagen={protagonista.imagenes[0]} />
+      <Hero imagenes={PRODUCTOS.map((p) => p.imagenes[0])} />
 
       <Section id="beneficios" superficie>
         <ul className="grid gap-8 sm:grid-cols-3">
@@ -62,7 +60,7 @@ export default function HomePage() {
         descripcion="Lo que más se suma a una cesta."
         superficie
       >
-        <ProductGrid productos={PRODUCTOS} />
+        <ProductGrid productos={PRODUCTOS} conTransicion />
         <div className="mt-10 flex justify-center">
           <Button asChild variant="outline" size="lg">
             <Link href="/catalogo">Ver todos</Link>

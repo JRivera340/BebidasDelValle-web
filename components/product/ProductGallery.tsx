@@ -7,10 +7,11 @@ import { Button } from '@/components/ui/button'
 import type { ImagenProducto } from '@/lib/types'
 
 interface ProductGalleryProps {
+  slug: string
   imagenes: ImagenProducto[]
 }
 
-export function ProductGallery({ imagenes }: ProductGalleryProps) {
+export function ProductGallery({ slug, imagenes }: ProductGalleryProps) {
   const [activa, setActiva] = useState(0)
   const actual = imagenes[activa]
 
@@ -19,7 +20,10 @@ export function ProductGallery({ imagenes }: ProductGalleryProps) {
 
   return (
     <div className="mx-auto w-full max-w-md space-y-4" data-acento={actual.acento}>
-      <div className="halo-producto relative aspect-[3/4] overflow-hidden rounded-2xl bg-producto-fondo/30">
+      <div
+        style={activa === 0 ? { viewTransitionName: `producto-${slug}` } : undefined}
+        className="halo-producto relative aspect-[3/4] overflow-hidden rounded-2xl bg-producto-fondo/30"
+      >
         <Image
           key={actual.src}
           src={actual.src}

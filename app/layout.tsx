@@ -8,6 +8,7 @@ import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { WhatsAppFloat } from '@/components/layout/WhatsAppFloat'
 import { WhatsAppTracker } from '@/components/layout/WhatsAppTracker'
+import { TransicionPagina } from '@/components/motion/TransicionPagina'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap' })
 const fraunces = Fraunces({ subsets: ['latin'], variable: '--font-fraunces', display: 'swap' })
@@ -81,6 +82,7 @@ export default function RootLayout({
         <Footer />
         <WhatsAppFloat />
         <WhatsAppTracker />
+        <TransicionPagina />
       </body>
     </html>
   )

@@ -35,7 +35,7 @@ export function CatalogoInteractivo() {
           No se encontraron productos con los filtros seleccionados
         </p>
       ) : (
-        <ProductGrid productos={visibles} />
+        <ProductGrid productos={visibles} conTransicion />
       )}
     </div>
   )
