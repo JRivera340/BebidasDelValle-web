@@ -1,26 +1,32 @@
-import { Product } from './types'
+import type { Producto } from './types'
+import { LINEAS, nombreCompleto } from './data/products'
+import { PHONE } from './whatsapp'
 
 export const SITE_NAME = 'Bebidas del Valle'
-export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://example.com'
+export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://example.com').replace(/\/$/, '')
 export const SITE_DESCRIPTION =
-  'Selección premium de vinos artesanales y harinas tradicionales. Cestas personalizadas y regalos corporativos.'
+  'Bebidas sin alcohol, mezclas para postres y tortas de temporada. Cestas personalizadas y regalos corporativos.'
 
-export function generateProductJsonLd(product: Product) {
+export function generateProductJsonLd(producto: Producto) {
+  const conPrecio = producto.datosConfirmados.precio && typeof producto.precio === 'number'
   return {
     '@context': 'https://schema.org',
     '@type': 'Product',
-    name: product.name,
-    description: product.description,
-    image: product.images,
-    sku: product.variants?.[0]?.sku || product.id,
-    offers: {
-      '@type': 'Offer',
-      availability: product.available
-        ? 'https://schema.org/InStock'
-        : 'https://schema.org/OutOfStock',
-      priceCurrency: 'COP',
-      ...(product.variants?.[0]?.price && { price: product.variants[0].price }),
-    },
+    name: nombreCompleto(producto),
+    description: producto.descripcion,
+    image: producto.imagenes.map((img) => `${SITE_URL}${img.src}`),
+    brand: { '@type': 'Brand', name: LINEAS[producto.linea] },
+    url: `${SITE_URL}/producto/${producto.slug}`,
+    ...(conPrecio && {
+      offers: {
+        '@type': 'Offer',
+        priceCurrency: 'COP',
+        price: producto.precio,
+        availability: producto.disponible
+          ? 'https://schema.org/InStock'
+          : 'https://schema.org/OutOfStock',
+      },
+    }),
   }
 }
 
@@ -46,10 +52,9 @@ export function generateOrganizationJsonLd() {
     description: SITE_DESCRIPTION,
     contactPoint: {
       '@type': 'ContactPoint',
-      telephone: '+57-311-3440504',
+      telephone: `+${PHONE}`,
       contactType: 'customer service',
       availableLanguage: 'es',
     },
   }
 }
-

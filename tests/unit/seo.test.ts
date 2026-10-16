@@ -1,12 +1,23 @@
 import { describe, it, expect } from 'vitest'
 import { generateProductJsonLd, generateBreadcrumbJsonLd } from '@/lib/seo'
-import { PRODUCTS } from '@/lib/data/products'
+import { PRODUCTOS } from '@/lib/data/products'
 
 describe('seo', () => {
-  it('JSON-LD de producto sin precio no incluye price', () => {
-    const ld = generateProductJsonLd(PRODUCTS[0])
+  it('JSON-LD de producto sin precio confirmado no incluye Offer', () => {
+    const ld = generateProductJsonLd(PRODUCTOS[0])
     expect(ld['@type']).toBe('Product')
-    expect(ld.offers).not.toHaveProperty('price')
+    expect(ld).not.toHaveProperty('offers')
+  })
+
+  it('JSON-LD incluye Offer solo con precio confirmado', () => {
+    const conPrecio = {
+      ...PRODUCTOS[0],
+      precio: 25000,
+      datosConfirmados: { ...PRODUCTOS[0].datosConfirmados, precio: true },
+    }
+    const ld = generateProductJsonLd(conPrecio)
+    expect(ld).toHaveProperty('offers.price', 25000)
+    expect(ld).toHaveProperty('offers.priceCurrency', 'COP')
   })
 
   it('breadcrumb numera posiciones desde 1', () => {

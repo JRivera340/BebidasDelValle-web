@@ -1,31 +1,56 @@
-export type Category = 'vinos' | 'licores' | 'harinas'
+export type Categoria = 'bebidas' | 'harinas' | 'panaderia'
 
-export interface Variant {
-  name: string
-  sku: string
-  price?: number
+export type Linea = 'vinifrut' | 'navifiest' | 'la-molienda' | 'torti-valle'
+
+export type Sello = 'azucares' | 'sodio' | 'grasas-saturadas' | 'edulcorantes'
+
+export type Acento =
+  | 'uva'
+  | 'cereza'
+  | 'manzana'
+  | 'bosque'
+  | 'melocoton'
+  | 'rosa'
+  | 'brasa'
+  | 'mantel'
+
+export interface Presentacion {
+  tamano: string
+  sku?: string
 }
 
-export interface Product {
-  id: string
+export interface ImagenProducto {
+  src: string
+  alt: string
+  acento?: Acento
+}
+
+export interface DatosConfirmados {
+  precio: boolean
+  ingredientes: boolean
+  registroSanitario: boolean
+}
+
+export interface Producto {
   slug: string
-  name: string
-  category: Category
-  variants?: Variant[]
-  description: string
-  tags: string[]
-  images: string[]
-  available: boolean
-  badges?: string[]
+  linea: Linea
+  nombre: string
+  categoria: Categoria
+  presentaciones: Presentacion[]
+  sellos: Sello[]
+  imagenes: ImagenProducto[]
+  acento: Acento
+  descripcion: string
+  disponible: boolean
+  precio?: number
+  datosConfirmados: DatosConfirmados
 }
 
-export interface Collection {
+export interface Coleccion {
   id: string
-  name: string
-  color: 'red' | 'gold' | 'white'
-  description: string
-  features: string[]
-  image: string
-  products: string[]
+  nombre: string
+  descripcion: string
+  acento: Acento
+  imagen: ImagenProducto
+  productos: string[]
 }
-

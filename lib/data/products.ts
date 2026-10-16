@@ -1,139 +1,187 @@
-import { Product, Collection, Category } from '../types'
+import type { Categoria, Linea, Producto } from '../types'
 
-export const PRODUCTS: Product[] = [
+export const LINEAS: Record<Linea, string> = {
+  vinifrut: 'Vinifrut',
+  navifiest: 'Navifiest',
+  'la-molienda': 'La Molienda',
+  'torti-valle': 'Torti Valle',
+}
+
+export const CATEGORIAS: Record<Categoria, { nombre: string; descripcion: string }> = {
+  bebidas: {
+    nombre: 'Bebidas',
+    // TODO(D1): confirmar con el cliente el término correcto de la categoría
+    descripcion:
+      'Bebidas sabor a uva, cereza y manzana, sin alcohol, en botella. Ideales para cestas personalizadas y regalos corporativos.',
+  },
+  harinas: {
+    nombre: 'Harinas',
+    descripcion: 'Mezclas en polvo para preparar postres tradicionales en casa.',
+  },
+  panaderia: {
+    nombre: 'Panadería',
+    descripcion: 'Tortas de temporada en caja, para acompañar la mesa o sumar a una cesta.',
+  },
+}
+
+const SIN_CONFIRMAR = { precio: false, ingredientes: false, registroSanitario: false }
+
+export const PRODUCTOS: Producto[] = [
   {
-    id: 'vino-cereza',
-    slug: 'vino-cereza',
-    name: 'Vino de Cereza',
-    category: 'vinos',
-    variants: [{ name: '750 ml', sku: 'CER-750' }],
-    description:
-      'Aromas frutales intensos y elegantes. Nuestra selección de temporada, ideal para obsequios corporativos y cestas personalizadas.',
-    tags: ['selección', 'obsequio'],
-    images: ['/img/vinos/cereza.svg'],
-    available: true,
-    badges: ['Edición especial'],
+    slug: 'vinifrut-uva',
+    linea: 'vinifrut',
+    nombre: 'Uva',
+    categoria: 'bebidas',
+    presentaciones: [{ tamano: '750 ml' }],
+    sellos: ['edulcorantes'],
+    imagenes: [
+      {
+        src: '/img/productos/vinifrut-uva.jpg',
+        alt: 'Botella de Vinifrut sabor uva entre racimos y salpicaduras sobre fondo morado',
+        acento: 'uva',
+      },
+    ],
+    acento: 'uva',
+    descripcion:
+      'Bebida sabor a uva, sin alcohol, en botella de 750 ml. Una opción para sumar a cestas personalizadas y regalos corporativos.',
+    disponible: true,
+    datosConfirmados: SIN_CONFIRMAR,
   },
   {
-    id: 'vino-manzana',
-    slug: 'vino-manzana',
-    name: 'Vino de Manzana',
-    category: 'vinos',
-    variants: [{ name: '750 ml', sku: 'MAN-750' }],
-    description:
-      'Equilibrado y fresco, con notas cítricas. Presentación premium para regalo, perfecto para ocasiones especiales.',
-    tags: ['selección'],
-    images: ['/img/vinos/manzana.svg'],
-    available: true,
+    slug: 'vinifrut-cereza',
+    linea: 'vinifrut',
+    nombre: 'Cereza',
+    categoria: 'bebidas',
+    presentaciones: [{ tamano: '750 ml' }],
+    sellos: ['edulcorantes'],
+    imagenes: [
+      {
+        src: '/img/productos/vinifrut-cereza.jpg',
+        alt: 'Botella de Vinifrut sabor cereza rodeada de cerezas y salpicaduras sobre fondo rojo',
+        acento: 'cereza',
+      },
+    ],
+    acento: 'cereza',
+    descripcion:
+      'Bebida sabor a cereza, sin alcohol, en botella de 750 ml. Aroma frutal para cestas personalizadas y regalos corporativos.',
+    disponible: true,
+    datosConfirmados: SIN_CONFIRMAR,
   },
   {
-    id: 'vino-moscatel',
-    slug: 'vino-moscatel',
-    name: 'Vino Moscatel',
-    category: 'vinos',
-    variants: [{ name: '750 ml', sku: 'MOS-750' }],
-    description:
-      'Perfil aromático dulce y envolvente. Recomendado para cestas personalizadas y regalos corporativos.',
-    tags: ['obsequio'],
-    images: ['/img/vinos/moscatel.svg'],
-    available: true,
+    slug: 'navifiest-manzana',
+    linea: 'navifiest',
+    nombre: 'Manzana',
+    categoria: 'bebidas',
+    // TODO(D8): confirmar sabor y si la presentación de 320 ml es un producto aparte
+    presentaciones: [{ tamano: '750 ml' }, { tamano: '320 ml' }],
+    // TODO(D6): verificar los sellos en la etiqueta real
+    sellos: ['edulcorantes'],
+    imagenes: [
+      {
+        src: '/img/productos/navifiest-manzana-rojo.jpg',
+        alt: 'Botella de Navifiest sabor manzana con cuello dorado sobre fondo rojo',
+        acento: 'manzana',
+      },
+      {
+        src: '/img/productos/navifiest-manzana-verde.jpg',
+        alt: 'Botella de Navifiest sabor manzana sobre fondo verde oscuro',
+        acento: 'bosque',
+      },
+      {
+        src: '/img/productos/navifiest-manzana-rosa.jpg',
+        alt: 'Botella de Navifiest sabor manzana sobre fondo rosa',
+        acento: 'rosa',
+      },
+      {
+        src: '/img/productos/navifiest-320-melocoton.jpg',
+        alt: 'Botella de Navifiest de 320 ml sobre fondo color melocotón',
+        acento: 'melocoton',
+      },
+    ],
+    acento: 'manzana',
+    descripcion:
+      'Bebida sabor a manzana, sin alcohol, en botella de 750 ml y en formato de 320 ml. Con cuello dorado, lista para acompañar una cesta.',
+    disponible: true,
+    datosConfirmados: SIN_CONFIRMAR,
   },
   {
-    id: 'harina-natilla',
-    slug: 'harina-natilla',
-    name: 'Harina para Natilla',
-    category: 'harinas',
-    variants: [{ name: '500 g', sku: 'NAT-500' }],
-    description:
-      'Mezcla tradicional para postres cremosos. Presentación lista para regalo, ideal para complementar cestas.',
-    tags: ['tradicional'],
-    images: ['/img/harinas/natilla.svg'],
-    available: true,
+    slug: 'la-molienda-natilla',
+    linea: 'la-molienda',
+    nombre: 'Natilla Tradicional',
+    categoria: 'harinas',
+    presentaciones: [],
+    sellos: ['azucares', 'sodio'],
+    imagenes: [
+      {
+        src: '/img/productos/la-molienda-natilla.jpg',
+        alt: 'Caja de mezcla en polvo La Molienda para preparar natilla tradicional',
+        acento: 'brasa',
+      },
+    ],
+    acento: 'brasa',
+    descripcion:
+      'Mezcla en polvo para preparar natilla tradicional. Complementa una cesta o la mesa de temporada.',
+    disponible: true,
+    datosConfirmados: SIN_CONFIRMAR,
   },
   {
-    id: 'harina-bunuelo',
-    slug: 'harina-bunuelo',
-    name: 'Harina para Buñuelo',
-    category: 'harinas',
-    variants: [{ name: '500 g', sku: 'BUN-500' }],
-    description:
-      'Textura crujiente garantizada. Selección especial para obsequios y pedidos corporativos.',
-    tags: ['selección'],
-    images: ['/img/harinas/bunuelo.svg'],
-    available: true,
-  },
-  {
-    id: 'harina-arequipe',
-    slug: 'harina-arequipe',
-    name: 'Harina sabor Arequipe',
-    category: 'harinas',
-    variants: [{ name: '500 g', sku: 'ARE-500' }],
-    description:
-      'Sabor clásico y auténtico. Ideal para combinar en cestas personalizadas y regalos de empresa.',
-    tags: ['clásico'],
-    images: ['/img/harinas/arequipe.svg'],
-    available: true,
-  },
-  {
-    id: 'aperitivo-rumberito',
-    slug: 'aperitivo-rumberito',
-    name: 'Aperitivo Rumberito',
-    category: 'licores',
-    variants: [{ name: '750 ml', sku: 'RUM-750' }],
-    description:
-      'Aperitivo único con un sabor característico y envolvente. Perfecto para ocasiones especiales y regalos corporativos de alta calidad.',
-    tags: ['especial', 'premium'],
-    images: ['/img/licores/rumberito.svg'],
-    available: true,
-    badges: ['Edición especial'],
+    slug: 'torti-valle-torta',
+    linea: 'torti-valle',
+    nombre: 'Torta de temporada',
+    categoria: 'panaderia',
+    presentaciones: [],
+    sellos: ['azucares', 'grasas-saturadas'],
+    imagenes: [
+      {
+        src: '/img/productos/torti-valle-torta.jpg',
+        alt: 'Caja de torta Torti Valle con ventana, sobre una superficie nevada con casitas de jengibre',
+        acento: 'mantel',
+      },
+    ],
+    acento: 'mantel',
+    descripcion: 'Torta de temporada en caja con ventana. Para acompañar la mesa o sumar a una cesta.',
+    disponible: true,
+    datosConfirmados: SIN_CONFIRMAR,
   },
 ]
 
-export const COLLECTIONS: Collection[] = [
-  {
-    id: 'rojo-clasico',
-    name: 'Colección Rojo Clásico',
-    color: 'red',
-    description: 'Selección tradicional de nuestros vinos más apreciados',
-    features: ['Vino de Cereza', 'Presentación premium', 'Disponible inmediato'],
-    image: '/img/collections/red.svg',
-    products: ['vino-cereza'],
-  },
-  {
-    id: 'dorado-premium',
-    name: 'Colección Dorado Premium',
-    color: 'gold',
-    description: 'Experiencia única para los paladares más exigentes',
-    features: ['Vino Moscatel', 'Edición limitada', 'Entrega 24-48h'],
-    image: '/img/collections/gold.svg',
-    products: ['vino-moscatel', 'harina-arequipe'],
-  },
-  {
-    id: 'blanco-esencial',
-    name: 'Colección Blanco Esencial',
-    color: 'white',
-    description: 'Sabores equilibrados y versátiles para toda ocasión',
-    features: ['Vino de Manzana', 'Harinas tradicionales', 'Disponible todo el año'],
-    image: '/img/collections/white.svg',
-    products: ['vino-manzana', 'harina-natilla', 'harina-bunuelo'],
-  },
-]
+// TODO(D2): Buñuelo, Arequipe y Rumberito quedan fuera hasta tener confirmación y fotos
 
-export function getProductBySlug(slug: string): Product | undefined {
-  return PRODUCTS.find((p) => p.slug === slug)
+export function getProductoPorSlug(slug: string): Producto | undefined {
+  return PRODUCTOS.find((p) => p.slug === slug)
 }
 
-export function getProductsByCategory(category: Category): Product[] {
-  return PRODUCTS.filter((p) => p.category === category)
+export function getProductosPorCategoria(categoria: Categoria): Producto[] {
+  return PRODUCTOS.filter((p) => p.categoria === categoria)
 }
 
-export function searchProducts(query: string): Product[] {
-  const q = query.toLowerCase()
-  return PRODUCTS.filter(
-    (p) =>
-      p.name.toLowerCase().includes(q) ||
-      p.description.toLowerCase().includes(q) ||
-      p.tags.some((t) => t.toLowerCase().includes(q))
-  )
+export function esCategoria(valor: string): valor is Categoria {
+  return valor in CATEGORIAS
 }
 
+export interface FiltroProductos {
+  texto?: string
+  categoria?: Categoria | 'todas'
+  soloDisponibles?: boolean
+}
+
+export function filtrarProductos(
+  { texto = '', categoria = 'todas', soloDisponibles = false }: FiltroProductos,
+  lista: Producto[] = PRODUCTOS
+): Producto[] {
+  const q = texto.trim().toLowerCase()
+  return lista.filter((p) => {
+    if (categoria !== 'todas' && p.categoria !== categoria) return false
+    if (soloDisponibles && !p.disponible) return false
+    if (!q) return true
+    return (
+      p.nombre.toLowerCase().includes(q) ||
+      LINEAS[p.linea].toLowerCase().includes(q) ||
+      p.descripcion.toLowerCase().includes(q)
+    )
+  })
+}
+
+export function nombreCompleto(p: Pick<Producto, 'linea' | 'nombre'>): string {
+  return `${LINEAS[p.linea]} ${p.nombre}`
+}
